@@ -1,12 +1,15 @@
 Groupe
 -> Imaginer 5 scénarios
 
+A rendre le 9 octobre 
+
+
 
 1 ) Une attaque sur un site web type OWASP et on l'attaque 
 2 ) Un serveur Git héberger en vulnérable et on fait une attaque avec une CVE 
 3 ) Une session SSH et on faut un brut force ou autre 
 4 ) Un download de fichier avec un payload dedans 
-5 ) Trouver une 5 ème idée
+5 ) DEployer un honeypot et voir ce que ca donne 
 
 
 Se répartir les différentes idée 
