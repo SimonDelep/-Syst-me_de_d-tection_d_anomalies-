@@ -2,7 +2,7 @@
 
 Réalisé par :
 - KEUDJEU MADEO Guy Landry
-- Simon
+- DELEPINE Simon
 - LAPÔTRE Marie-Steffie
 - VANDAMME Aliona
 
