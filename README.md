@@ -1,8 +1,8 @@
 # Sécurité informatique 8INF857 — Projet pratique 1 (DS-Lab)
 
 Réalisé par :
-- KEUDJEU MADEO Guy Landry
 - DELEPINE Simon
+- KEUDJEU MADEO Guy Landry
 - LAPÔTRE Marie-Steffie
 - VANDAMME Aliona
 
