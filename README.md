@@ -1,4 +1,10 @@
-# IDS-Lab — Projet pratique 1 (Maîtrise en cybersécurité)
+# Sécurité informatique 8INF857 — Projet pratique 1 (DS-Lab)
+
+Réalisé par :
+- DELEPINE Simon
+- KEUDJEU MADEO Guy Landry
+- LAPÔTRE Marie-Steffie
+- VANDAMME Aliona
 
 Système de détection d'intrusion basé sur **Suricata** (IDS/IPS), **syslog-ng** et la pile **ELK** (Elasticsearch/Kibana), déployé sur une VM Ubuntu Server.
 
@@ -9,27 +15,27 @@ Système de détection d'intrusion basé sur **Suricata** (IDS/IPS), **syslog-ng
 ## 1. Vue d'ensemble de l'architecture
 
 ```
-Trafic réseau (enp0s3)
+Trafic réseau (enp0s8)
         │
         ▼
-   ┌─────────┐        eve.json        ┌───────────┐        ┌───────────────┐        ┌────────┐
+   ┌──────────┐        eve.json         ┌───────────┐        ┌───────────────┐         ┌────────┐
    │ Suricata │ ─────────────────────▶ │ Filebeat  │ ─────▶ │ Elasticsearch │ ─────▶ │ Kibana │
-   │  (IDS)   │                        │ (module   │        │               │        │        │
-   └─────────┘                        │ suricata) │        └───────────────┘        └────────┘
-        │                              └───────────┘               ▲
-        │                                                          │
-   Logs système                                                    │
-   (auth, kernel...)                                               │
-        │                                                          │
-        ▼                                                          │
-   ┌──────────┐          index syslog-ng          ┌────────────────┘
-   │ syslog-ng │ ───────────────────────────────▶ │
-   └──────────┘
+   │  (IDS)   │                         │ (module   │        │               │         │        │
+   └──────────┘                         │ suricata) │        └───────────────┘         └────────┘
+        │                               └───────────┘               ▲
+        │                                                           │
+   Logs système                                                     │
+ (auth, kernel...)                                                  │
+        │                                                           │
+        ▼                                                           │
+   ┌───────────┐              index syslog-ng                       │
+   │ syslog-ng │ ────────────────────────────────────────────────▶ │
+   └───────────┘
 ```
 
 | Composant | Rôle | Port |
 |---|---|---|
-| Suricata 8.0.3 | Détection d'intrusion (IDS), 52 888 règles Emerging Threats Open | — (écoute passive sur `enp0s3`) |
+| Suricata 8.0.3 | Détection d'intrusion (IDS), 52 888 règles Emerging Threats Open | — (écoute passive sur `enp0s8`) |
 | syslog-ng 4.8.1 | Collecte des logs système → Elasticsearch | — |
 | Filebeat 8.19.21 | Parsing du format EVE JSON de Suricata → Elasticsearch | — |
 | Elasticsearch 8.19.21 | Stockage et indexation | 9200 (HTTPS) |
@@ -41,8 +47,10 @@ Trafic réseau (enp0s3)
 
 - VM Ubuntu Server 26.04.1 ("resolute")
 - 4 à 5 Go de RAM minimum (Elasticsearch + Kibana + Suricata + Filebeat + syslog-ng ensemble sont gourmands — un OOM kill a déjà été observé avec moins de RAM disponible)
-- 40 Go de disque
-- Réseau en mode **NAT**, interface `enp0s3`
+- 4 CPU
+- 60 Go de disque
+- Réseau 1 en mode **NAT**, interface `enp0s3`
+- Réseau 2 en mode **Accès par pont**, interface `enp0s8`
 
 ### Redirections de port à configurer (VirtualBox, côté hôte)
 
@@ -145,12 +153,12 @@ sudo apt install -y suricata
 ```yaml
 vars:
   address-groups:
-    HOME_NET: "[10.0.2.0/24]"   # Adapter selon la plage réseau réelle de la VM
+    HOME_NET: "[10.0.2.0/24]"   # Adapter selon la plage réseau réelle de la VM (ici 192.168.0.0/24)
 ```
 
 ```yaml
 af-packet:
-  - interface: enp0s3            # Adapter selon le nom de l'interface (voir `ip addr show`)
+  - interface: enp0s3            # Adapter selon le nom de l'interface (voir `ip addr show`, ici enp0s8)
 ```
 
 **Télécharger les règles de détection (Emerging Threats Open) :**
@@ -251,7 +259,7 @@ Une alerte du type `GPL ATTACK_RESPONSE id check returned root` doit apparaître
 sudo systemctl status elasticsearch kibana syslog-ng suricata filebeat
 ```
 
-**Ordre de démarrage recommandé** (après un redémarrage de VM) : Elasticsearch peut prendre 1 à 4 minutes à démarrer selon la charge — attendre `active (running)` avant de tester Kibana ou de vérifier la santé du cluster.
+**Ordre de démarrage recommandé** (après un redémarrage de VM) : Elasticsearch peut prendre 1 à 4 minutes à démarrer selon la charge, attendre `active (running)` avant de tester Kibana.
 
 **Accès Kibana** : `http://localhost:5601` (compte `elastic`)
 **Discover** : logs bruts, filtrables par data view (`syslog-ng*`, `filebeat-*`)
@@ -259,34 +267,7 @@ sudo systemctl status elasticsearch kibana syslog-ng suricata filebeat
 
 ---
 
-## 6. Créer un scénario d'intrusion
-
-Chaque scénario doit suivre cette structure pour rester cohérent dans la documentation finale :
-
-1. **Objectif** : quelle technique MITRE ATT&CK ou quel type d'attaque est simulé
-2. **Commande(s) exécutée(s)** sur la VM ou depuis une machine externe ciblant la VM
-3. **Alerte(s) attendue(s)** : quelle(s) règle(s) Suricata devrai(en)t se déclencher
-4. **Capture d'écran** du dashboard Kibana montrant l'alerte détectée
-5. **Analyse** : pourquoi cette activité est considérée malveillante, quel serait le comportement en environnement réel
-
-### Exemples de scénarios possibles
-
-| # | Scénario | Commande de test (exemple) |
-|---|---|---|
-| 1 | Scan de ports (reconnaissance) | `nmap -sS 10.0.2.15` depuis une autre machine |
-| 2 | Tentative de brute-force SSH | `hydra -l root -P wordlist.txt ssh://10.0.2.15` |
-| 3 | Exécution de commande suspecte via HTTP | `curl testmyids.com` (déjà validé) |
-| 4 | Téléchargement de fichier exécutable suspect | Télécharger un binaire depuis un serveur de test EICAR |
-| 5 | Trafic vers un domaine malveillant connu | Requête DNS vers un domaine présent dans les règles ET Open |
-
-Pour trouver le nom exact d'une règle déclenchée et l'inclure dans le rapport :
-```bash
-sudo grep -i "<mot-clé>" /var/lib/suricata/rules/suricata.rules
-```
-
----
-
-## 7. Dépannage courant
+## 6. Dépannage courant
 
 | Symptôme | Cause probable | Solution |
 |---|---|---|
@@ -297,31 +278,13 @@ sudo grep -i "<mot-clé>" /var/lib/suricata/rules/suricata.rules
 | `Package 'libpcre3-dev' has no installation candidate` | Paquet obsolète sur Ubuntu 26.04 | Utiliser `libpcre2-dev` à la place |
 | `Unable to locate package snort` | Snort retiré des dépôts Ubuntu 26.04 | Utiliser Suricata (voir section 3.3) |
 | Warning "No rule files match the pattern" au démarrage de Suricata | Règles pas encore téléchargées | `sudo suricata-update` |
+| `suricata.service` est en `deactivating (stop-sigterm)` | Timeout dépassé | Ajouter `[Service]\nTimeoutStartSec=300` dans `/etc/systemd/system/suricata.service.d/override.conf` |
 
 ---
 
-## 8. Identifiants de démonstration
+## 7. Identifiants de démonstration
 
-> ⚠️ À ne jamais publier tels quels dans un dépôt GitHub public. Les remplacer par `<VOTRE_MOT_DE_PASSE>` dans toute version partagée du code, et transmettre les vraies valeurs uniquement par un canal privé (message direct, gestionnaire de mots de passe partagé).
+> ⚠️ Ne jamais publier vos mots de passe tels quels dans un dépôt GitHub public. Les remplacer par `<VOTRE_MOT_DE_PASSE>` dans toute version partagée du code, et transmettre les vraies valeurs uniquement par un canal privé (message direct, gestionnaire de mots de passe partagé).
 
 - SSH : `madeo@127.0.0.1 -p 2222`
 - Kibana / Elasticsearch : utilisateur `elastic`
-
----
-
-## 9. Répartition des tâches (groupe de 4)
-
-| Membre | Responsabilité |
-|---|---|
-| Guy (lead) | Déploiement et intégration complète (ELK, syslog-ng, Suricata, Filebeat) |
-| Coéquipier 2 | Validation/documentation de la substitution Snort → Suricata |
-| Coéquipier 3 | Scénarios d'intrusion 1-2, mise en place des alertes email/Slack |
-| Coéquipier 4 | Scénarios d'intrusion 3-5, dashboards Kibana |
-
----
-
-## 10. Prochaines étapes
-
-- [ ] Concevoir et exécuter les 5 scénarios d'intrusion
-- [ ] Mettre en place les alertes email/Slack sur détection
-- [ ] Finaliser la documentation GitHub (captures d'écran, analyse par scénario)
