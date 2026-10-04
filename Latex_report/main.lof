@@ -1,15 +1,27 @@
 \babel@toc {nil}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Serveur HTTP de l'attaquant (port~6666) prêt à servir \texttt {poc.xml}.}}{4}{figure.caption.3}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Lancement de \texttt {poc.py} contre \texttt {192.168.2.90:61616}.}}{4}{figure.caption.4}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Téléchargement de \texttt {poc.xml} par la cible depuis le serveur HTTP de l'attaquant.}}{4}{figure.caption.5}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Preuve de RCE~: fichier témoin présent dans le conteneur ActiveMQ.}}{5}{figure.caption.6}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Événements Suricata filtrés sur l'adresse de l'attaquant (\texttt {192.168.2.12}).}}{5}{figure.caption.7}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Balayage \texttt {nmap} révélant les ports ouverts de la cible.}}{7}{figure.caption.9}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Identification du serveur web et de la version de PHP via les en-têtes HTTP.}}{7}{figure.caption.10}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Serveur HTTP de l'attaquant hébergeant la charge utile \texttt {1.txt}.}}{8}{figure.caption.11}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Contenu de la charge utile~: dépôt du webshell \texttt {ids.php} dans la racine web.}}{8}{figure.caption.12}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Preuve de l'exécution de code à distance~: le webshell renvoie l'identité \texttt {www-data}.}}{8}{figure.caption.13}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Exécution de commandes via le webshell~: \texttt {whoami} et lecture de \texttt {/etc/passwd}.}}{9}{figure.caption.14}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Énumération de la racine web \texttt {/var/www/html} à travers le webshell.}}{9}{figure.caption.15}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Événement HTTP enregistré par Suricata correspondant à l'appel du webshell.}}{10}{figure.caption.16}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Capture en temps réel des requêtes vers \texttt {ids.php} dans \texttt {eve.json}.}}{10}{figure.caption.17}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Serveur HTTP de l'attaquant (port~6666) prêt à servir \texttt {poc.xml}.}}{5}{figure.caption.3}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Lancement de \texttt {poc.py} contre \texttt {192.168.2.90:61616}.}}{5}{figure.caption.4}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Téléchargement de \texttt {poc.xml} par la cible depuis le serveur HTTP de l'attaquant.}}{5}{figure.caption.5}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Preuve de RCE~: fichier témoin présent dans le conteneur ActiveMQ.}}{6}{figure.caption.6}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Événements Suricata filtrés sur l'adresse de l'attaquant (\texttt {192.168.2.12}).}}{6}{figure.caption.7}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Balayage \texttt {nmap} révélant les ports ouverts de la cible.}}{8}{figure.caption.9}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Identification du serveur web et de la version de PHP via les en-têtes HTTP.}}{8}{figure.caption.10}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Serveur HTTP de l'attaquant hébergeant la charge utile \texttt {1.txt}.}}{9}{figure.caption.11}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Contenu de la charge utile~: dépôt du webshell \texttt {ids.php} dans la racine web.}}{9}{figure.caption.12}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Preuve de l'exécution de code à distance~: le webshell renvoie l'identité \texttt {www-data}.}}{9}{figure.caption.13}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Exécution de commandes via le webshell~: \texttt {whoami} et lecture de \texttt {/etc/passwd}.}}{10}{figure.caption.14}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Énumération de la racine web \texttt {/var/www/html} à travers le webshell.}}{10}{figure.caption.15}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Événement HTTP enregistré par Suricata correspondant à l'appel du webshell.}}{11}{figure.caption.16}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Capture en temps réel des requêtes vers \texttt {ids.php} dans \texttt {eve.json}.}}{11}{figure.caption.17}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Table ARP saine (\texttt {0a:00:27:00:00:0b}) et \texttt {ping} réussi.}}{13}{figure.caption.19}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Script Scapy en cours d'exécution sur le poste attaquant.}}{14}{figure.caption.20}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Table ARP empoisonnée~: \texttt {192.168.56.1} associé à \texttt {00:11:22:33:44:55}.}}{15}{figure.caption.21}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Événement \texttt {event\_type: arp} falsifié dans \texttt {eve.json}.}}{15}{figure.caption.22}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Corrélation \texttt {jq}~: \texttt {192.168.56.1} revendiquée par deux MAC.}}{16}{figure.caption.23}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Table Kibana~: \texttt {192.168.56.1} associée à deux adresses MAC.}}{17}{figure.caption.24}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Exécution de \texttt {syn\_flood.py}~: 3\,000 paquets SYN vers la VM.}}{19}{figure.caption.27}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Alertes «~LOCAL SYN Flood - possible DoS~» (\texttt {sid:1000002}) dans \texttt {fast.log}.}}{20}{figure.caption.28}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Kibana~: pic d'alertes \texttt {rule.id:1000002} correspondant au SYN flood.}}{21}{figure.caption.29}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Résultat de l'injection UNION dans DVWA~: comptes et hachés MD5 affichés.}}{24}{figure.caption.31}%
+\contentsline {figure}{\numberline {25}{\ignorespaces Règle \texttt {1000003}, rechargement et alerte dans \texttt {fast.log}.}}{25}{figure.caption.32}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Alerte d'injection SQL (\texttt {rule.id:1000003}) dans Kibana.}}{25}{figure.caption.33}%
