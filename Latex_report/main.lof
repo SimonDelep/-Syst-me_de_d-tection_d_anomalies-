@@ -1,1 +1,15 @@
 \babel@toc {nil}{}\relax 
+\contentsline {figure}{\numberline {1}{\ignorespaces Serveur HTTP de l'attaquant (port~6666) prêt à servir \texttt {poc.xml}.}}{4}{figure.caption.3}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Lancement de \texttt {poc.py} contre \texttt {192.168.2.90:61616}.}}{4}{figure.caption.4}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Téléchargement de \texttt {poc.xml} par la cible depuis le serveur HTTP de l'attaquant.}}{4}{figure.caption.5}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Preuve de RCE~: fichier témoin présent dans le conteneur ActiveMQ.}}{5}{figure.caption.6}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Événements Suricata filtrés sur l'adresse de l'attaquant (\texttt {192.168.2.12}).}}{5}{figure.caption.7}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Balayage \texttt {nmap} révélant les ports ouverts de la cible.}}{7}{figure.caption.9}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Identification du serveur web et de la version de PHP via les en-têtes HTTP.}}{7}{figure.caption.10}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Serveur HTTP de l'attaquant hébergeant la charge utile \texttt {1.txt}.}}{8}{figure.caption.11}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Contenu de la charge utile~: dépôt du webshell \texttt {ids.php} dans la racine web.}}{8}{figure.caption.12}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Preuve de l'exécution de code à distance~: le webshell renvoie l'identité \texttt {www-data}.}}{8}{figure.caption.13}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Exécution de commandes via le webshell~: \texttt {whoami} et lecture de \texttt {/etc/passwd}.}}{9}{figure.caption.14}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Énumération de la racine web \texttt {/var/www/html} à travers le webshell.}}{9}{figure.caption.15}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Événement HTTP enregistré par Suricata correspondant à l'appel du webshell.}}{10}{figure.caption.16}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Capture en temps réel des requêtes vers \texttt {ids.php} dans \texttt {eve.json}.}}{10}{figure.caption.17}%

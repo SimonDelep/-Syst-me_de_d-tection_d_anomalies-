@@ -1,10 +1,24 @@
 \babel@toc {nil}{}\relax 
 \contentsline {section}{List of Figures}{2}{section*.1}%
 \contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
-\contentsline {section}{\numberline {2}Scénario 1}{3}{section.2}%
-\contentsline {section}{\numberline {3}Scénario 2}{3}{section.3}%
-\contentsline {section}{\numberline {4}Scénario 3}{3}{section.4}%
-\contentsline {section}{\numberline {5}Scénario 4}{3}{section.5}%
-\contentsline {section}{\numberline {6}Scénario 5}{3}{section.6}%
-\contentsline {section}{\numberline {7}Résultat et Discussion}{3}{section.7}%
-\contentsline {section}{\numberline {8}Conclusion}{3}{section.8}%
+\contentsline {section}{\numberline {2}Scénario 1 : Attaque Active MQ (CVE-2023-46604)}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Contexte et objectif}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Environnement de test}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Phase 1 : préparation de la charge utile}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Phase 2 : exploitation et preuve de RCE}{4}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Phase 3 : détection par la chaîne de supervision}{4}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Synthèse}{6}{subsection.2.6}%
+\contentsline {section}{\numberline {3}Scénario 2 : exploitation d'un WordPress vulnérable (CVE-2016-10033)}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Contexte et objectif}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Environnement de test}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Phase 1 : reconnaissance}{7}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Phase 2 : préparation de la charge utile}{7}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Phase 3 : exploitation et exécution de code à distance}{8}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Phase 4 : post-exploitation}{8}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Phase 5 : détection par la chaîne de supervision}{10}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Synthèse}{11}{subsection.3.8}%
+\contentsline {section}{\numberline {4}Scénario 3}{11}{section.4}%
+\contentsline {section}{\numberline {5}Scénario 4}{11}{section.5}%
+\contentsline {section}{\numberline {6}Scénario 5}{11}{section.6}%
+\contentsline {section}{\numberline {7}Résultat et Discussion}{11}{section.7}%
+\contentsline {section}{\numberline {8}Conclusion}{11}{section.8}%
