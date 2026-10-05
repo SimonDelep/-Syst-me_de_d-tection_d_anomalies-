@@ -61,7 +61,7 @@
 	
 	\includegraphics[width=0.5\textwidth]{Latex_report/Image/logo.jpg}\\[2cm] % Include a department/university logo - this will require the graphicx package
 	
-	\textsc{\Large Département d’informatique et de mathématique}\\[0.5cm] % Major heading such as course name
+	\textsc{\Large Département d'informatique et de mathématique}\\[0.5cm] % Major heading such as course name
 	
 	\textsc{\large Sécurité informatique - 8INF857 }\\[0.5cm] % Minor heading such as course title
 	
@@ -129,18 +129,18 @@
 \section{Introduction}\label{sec:Q1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Détecter les anomalies réseau aujourd’hui est autant élémentaire qu’indispensable. Dans une société hautement numérisée et une nécessité de protéger les actifs de son organisation, détecter les anomalies et gérer les logs permettent de réduire les risques liés à la \textit{disponibilité} et à l’\textit{intégrité} non seulement des \textbf{données} mais également des \textbf{processus} et des \textbf{technologies}.
+Détecter les anomalies réseau aujourd'hui est autant élémentaire qu'indispensable. Dans une société hautement numérisée et une nécessité de protéger les actifs de son organisation, détecter les anomalies et gérer les logs permettent de réduire les risques liés à la \textit{disponibilité} et à l'\textit{intégrité} non seulement des \textbf{données} mais également des \textbf{processus} et des \textbf{technologies}.
 
 \vspace{0.4cm}
 
-L’objectif de ce premier travail pratique dans le cadre du cours de \textbf{Sécurité Informatique} à l’Université du Québec à Chicoutimi (\textit{UQAC}) est d’améliorer la sécurité réseau en visualisant les anomalies et menaces à l’aide des logs.
+L'objectif de ce premier travail pratique dans le cadre du cours de \textbf{Sécurité Informatique} à l'Université du Québec à Chicoutimi (\textit{UQAC}) est d'améliorer la sécurité réseau en visualisant les anomalies et menaces à l'aide des logs.
 
 \vspace{0.4cm}
 
 Pour ce faire, nous avons utilisé une \textbf{machine virtuelle Linux} (\textit{distro Ubuntu}) et installé les outils suivants :
 
 \begin{itemize}[nosep]
-  \item \textbf{Suricata (IDS/IPS)}~: outil de détection d’intrusions;
+  \item \textbf{Suricata (IDS/IPS)}~: outil de détection d'intrusions;
   \item \textbf{syslog-ng}~: outil de collecte de logs;
   \item \textbf{Elasticsearch}~: base de données pour stocker et rechercher les logs;
   \item \textbf{Kibana}~: interface de visualisation des logs.
@@ -148,7 +148,7 @@ Pour ce faire, nous avons utilisé une \textbf{machine virtuelle Linux} (\textit
 
 \vspace{0.4cm}
 
-Pour tester nos outils et détecter les menaces potentielles en temps réel, nous avons créé cinq scénarios d’attaques :
+Pour tester nos outils et détecter les menaces potentielles en temps réel, nous avons créé cinq scénarios d'attaques :
 
 \begin{itemize}[nosep]
   \item \textbf{WordPress vulnérable}~: exécution de code à distance (RCE) affectant PHPMailer;
@@ -160,7 +160,7 @@ Pour tester nos outils et détecter les menaces potentielles en temps réel, nou
 
 \vspace{0.4cm}
 
-L’implémentation et la visualisation de ces cinq attaques sont expliquées dans ce rapport à la suite de cette introduction. Enfin, nous finirons sur une conclusion détaillant les limites du projet et ses améliorations possibles.
+L'implémentation et la visualisation de ces cinq attaques sont expliquées dans ce rapport à la suite de cette introduction. Enfin, nous finirons sur une conclusion détaillant les limites du projet et ses améliorations possibles.
 
 \vspace{0.4cm}
 
@@ -526,7 +526,7 @@ filtrage manuel.
 
 \subsection{Contexte et objectif}
 
-Le but de ce petit scénario est de détecter une tentative de \textbf{connexion SSH} à la VM par \textbf{brute-force}. Le brute-force consiste à tester toutes les combinaisons possibles de mots de passe ou de clés de chiffrement jusqu’à trouver celle correspondante. Utilisée avec des outils d’automatisation pour générer et tester des \textit{milliers de combinaisons par seconde}, cette méthode est l’une des premières utilisées par les cybercriminels pour accéder à une session ou trouver la clé de déchiffrement.
+Le but de ce petit scénario est de détecter une tentative de \textbf{connexion SSH} à la VM par \textbf{brute-force}. Le brute-force consiste à tester toutes les combinaisons possibles de mots de passe ou de clés de chiffrement jusqu'à trouver celle correspondante. Utilisée avec des outils d'automatisation pour générer et tester des \textit{milliers de combinaisons par seconde}, cette méthode est l'une des premières utilisées par les cybercriminels pour accéder à une session ou trouver la clé de déchiffrement.
 
 
 \subsection{Environnement de test}
@@ -1228,10 +1228,46 @@ classique, toujours dans un périmètre labo isolé.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Résultat et Discussion}\label{sec:Q8}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+La mise en place de ce système de détection d'anomalies et de gestion de logs a permis de valider avec succès notre architecture de supervision réseau. L'intégration de Suricata (IDS), Filebeat/syslog-ng, Elasticsearch et Kibana offre une chaîne complète allant de la capture du paquet réseau jusqu'à sa visualisation analytique.
+
+\subsection{Analyse des détections}
+À travers les différents scénarios implémentés, nous avons démontré la capacité du système à détecter des menaces variées :
+\begin{itemize}[nosep]
+    \item \textbf{Couche réseau et transport} : les attaques de type SYN flood et ARP Spoofing ont mis en évidence l'importance d'analyser les comportements anormaux (rafales de paquets, duplications d'adresses MAC) au-delà des simples signatures connues.
+    \item \textbf{Couche applicative} : les scénarios d'exploitation (WordPress, ActiveMQ, injection SQL) et de brute-force (SSH) ont confirmé l'efficacité de Suricata pour inspecter les requêtes HTTP malveillantes et les tentatives d'intrusion répétées. \\
+\end{itemize} 
+
+Nous avons également constaté que les règles par défaut ne suffisent pas toujours, notamment pour le trafic interne ciblant la variable \texttt{\$HOME\_NET}. La rédaction de règles personnalisées dans le fichier \texttt{local.rules} s'est avérée indispensable pour générer des alertes spécifiques et pertinentes. La visualisation de ces données dans Kibana a considérablement réduit la complexité d'analyse en regroupant les IP sources, les ports et les charges utiles.
+
+\subsection{Limites du projet}
+Bien que fonctionnel, notre système présente certaines limites techniques et opérationnelles inhérentes à sa conception :
+\begin{itemize}[nosep]
+    \item \textbf{Chiffrement du trafic} : l'inspection de paquets en clair (HTTP, Telnet) est aisée, mais la majorité du trafic moderne est chiffrée (HTTPS, TLS). Sans un mécanisme d'interception et de déchiffrement, l'IDS reste aveugle au contenu des charges utiles chiffrées.
+    \item \textbf{Faux positifs et réglage} : une détection purement basée sur les signatures génère inévitablement du « bruit ». Un travail continu d'ajustement (\textit{tuning}) des règles est nécessaire pour ne pas noyer l'administrateur sous de fausses alertes.
+    \item \textbf{Consommation de ressources} : la pile ELK (Elasticsearch, Logstash/Beats, Kibana) est très gourmande en mémoire et en puissance de calcul. Dans un environnement de production à très haut débit, une architecture distribuée complexe (cluster) serait obligatoire.
+\end{itemize}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}\label{sec:Q9}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Ce projet nous a permis d'acquérir une expérience pratique fondamentale dans le déploiement et l'administration d'un système centralisé de détection d'intrusions et de gestion d'événements de sécurité. En orchestrant des outils reconnus, nous avons pu observer l'impact direct d'une attaque, depuis sa génération jusqu'à son apparition sous forme d'alerte critique dans un tableau de bord.
+
+\subsection{Améliorations possibles}
+Pour pallier les limites identifiées et optimiser la réponse aux incidents, plusieurs améliorations de notre architecture peuvent être envisagées :
+\begin{itemize}[nosep]
+    \item \textbf{Automatisation des alertes} : actuellement, la détection nécessite une consultation de Kibana. L'intégration d'un script d'alerte automatisé vers des plateformes de communication (Slack, Microsoft Teams ou e-mail) permettrait une réactivité immédiate de l'équipe de sécurité dès l'apparition d'une anomalie.
+    \item \textbf{Tableaux de bord personnalisés} : au lieu d'utiliser exclusivement les vues par défaut, la création de \textit{Dashboards} personnalisés (Top 10 des IP attaquantes, géolocalisation des attaques, chronologie des événements) faciliterait grandement l'analyse visuelle de haut niveau.
+\end{itemize}
+
+\subsection{Perspectives}
+Dans une optique de veille technologique, l'évolution naturelle de ce type d'infrastructure tend vers l'adoption d'approches \textbf{XDR} (\textit{Extended Detection and Response}). L'intégration d'un outil comme \textbf{Wazuh} permettrait d'enrichir la collecte en combinant les événements réseau (NIDS) avec les événements hôtes (HIDS), offrant ainsi une corrélation beaucoup plus fine et exhaustive.
+
+De plus, l'ajout de mécanismes d'\textbf{apprentissage automatique} (\textit{Machine Learning}), désormais intégrés dans les versions modernes d'Elastic, permettrait de basculer d'une sécurité réactive (basée sur des signatures connues) à une sécurité proactive, capable de détecter des déviations comportementales subtiles et des attaques \textit{Zero-Day}.
+
+Enfin, l'évolution de notre IDS vers un véritable \textbf{IPS} (\textit{Intrusion Prevention System}) actif, capable de bloquer automatiquement les flux malveillants via le pare-feu (mode \textit{inline}), constituerait l'aboutissement logique pour sécuriser activement et en temps réel l'infrastructure réseau.
+
 
 
 
