@@ -78,34 +78,27 @@
 	%------------------------------------------------
 	%	Author(s)
 	%------------------------------------------------
-	
+    
+    \begin{center}
+        \large
+        \textit{Students}\\
+        DELEPINE Simon,
+        KEUDJEU MADEO Guy Landry,
+        LAPÔTRE Marie-Steffie,
+        VANDAMME Aliona
+        \\
+    \end{center}
 
-		\begin{center}
-			\large
-			\textit{Student}\\
-            DELEPINE Simon,
-            KEUDJEU MADEO Guy Landry,
-            LAPÔTRE Marie-Steffie,
-            VANDAMME Aliona
-			\\
-		\end{center}
-
-	
-	% If you don't want a supervisor, uncomment the two lines below and comment the code above
-	%{\large\textit{Remis à}}\\
-	%Sara \textsc{SÉGUIN} % Your name
 	
 	%------------------------------------------------
 	%	Date
 	%------------------------------------------------
 	
-	\vfill\vfill\vfill % Position the date 3/4 down the remaining page
+	\vfill\vfill\vfill\vfill % Position the date 3/4 down the remaining page
 	
 	{\large\today} % Date, change the \today to a set date if you want to be precise
 	
 	%----------------------------------------------------------------------------------------
-	
-	\vfill % Push the date up 1/4 of the remaining page
 	
 \end{titlepage}	
 	
@@ -1228,7 +1221,7 @@ classique, toujours dans un périmètre labo isolé.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Résultat et Discussion}\label{sec:Q8}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-La mise en place de ce système de détection d'anomalies et de gestion de logs a permis de valider avec succès notre architecture de supervision réseau. L'intégration de Suricata (IDS), Filebeat/syslog-ng, Elasticsearch et Kibana offre une chaîne complète allant de la capture du paquet réseau jusqu'à sa visualisation analytique.
+La mise en place de ce système de détection d'anomalies et de gestion de logs a permis de valider avec succès notre architecture de supervision réseau. L'intégration de Suricata (IDS), Filebeat/syslog-ng, Elasticsearch et Kibana offrent une chaîne complète allant de la capture du paquet réseau jusqu'à sa visualisation analytique.
 
 \subsection{Analyse des détections}
 À travers les différents scénarios implémentés, nous avons démontré la capacité du système à détecter des menaces variées :
@@ -1269,6 +1262,11 @@ De plus, l'ajout de mécanismes d'\textbf{apprentissage automatique} (\textit{Ma
 Enfin, l'évolution de notre IDS vers un véritable \textbf{IPS} (\textit{Intrusion Prevention System}) actif, capable de bloquer automatiquement les flux malveillants via le pare-feu (mode \textit{inline}), constituerait l'aboutissement logique pour sécuriser activement et en temps réel l'infrastructure réseau.
 
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.1\linewidth]{Image/utilisation_IA.png}
+  \label{fig:use_IA}
+\end{figure}
 
 
 \end{document}
