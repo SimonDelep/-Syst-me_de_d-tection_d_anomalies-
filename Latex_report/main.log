@@ -1,7 +1,6 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.5.15)  9 OCT 2026 12:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.5.15)  9 OCT 2026 15:34
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
 **./main.tex
 (main.tex
@@ -1364,48 +1363,47 @@ Package pdftex.def Info: Image/Image_Attaque_3/brute_force_ssh_kibana.png  used
 (pdftex.def)             Requested size: 448.42822pt x 204.91466pt.
 [17 <./Image/Image_Attaque_3/brute_ssh_logs_1.png> <./Image/Image_Attaque_3/bru
 te_ssh_logs_2.png>] [18 <./Image/Image_Attaque_3/brute_force_ssh_kibana.png>]
-<Image/Image_Attaque_4/capture_1.jpg, id=553, 619.31375pt x 257.96375pt>
-File: Image/Image_Attaque_4/capture_1.jpg Graphic file (type jpg)
-<use Image/Image_Attaque_4/capture_1.jpg>
-Package pdftex.def Info: Image/Image_Attaque_4/capture_1.jpg  used on input lin
-e 765.
-(pdftex.def)             Requested size: 434.26787pt x 180.89221pt.
+<Image/Image_Attaque_4/03-arp-corrompu.png, id=553, 627.34375pt x 142.5325pt>
+File: Image/Image_Attaque_4/03-arp-corrompu.png Graphic file (type png)
+<use Image/Image_Attaque_4/03-arp-corrompu.png>
+Package pdftex.def Info: Image/Image_Attaque_4/03-arp-corrompu.png  used on inp
+ut line 765.
+(pdftex.def)             Requested size: 434.26787pt x 98.66939pt.
 
-[19]
-<Image/Image_Attaque_4/capture_2.jpg, id=559, 604.2575pt x 185.69376pt>
-File: Image/Image_Attaque_4/capture_2.jpg Graphic file (type jpg)
-<use Image/Image_Attaque_4/capture_2.jpg>
-Package pdftex.def Info: Image/Image_Attaque_4/capture_2.jpg  used on input lin
-e 799.
-(pdftex.def)             Requested size: 415.38979pt x 127.6528pt.
- [20 <./Image/Image_Attaque_4/capture_1.jpg> <./Image/Image_Attaque_4/capture_2
-.jpg>]
-<Image/Image_Attaque_4/capture_3.jpg, id=565, 627.34375pt x 142.5325pt>
+[19 <./Image/Image_Attaque_4/03-arp-corrompu.png (PNG copy)>]
+<Image/Image_Attaque_4/01-arp-sain.png, id=559, 619.31375pt x 257.96375pt>
+File: Image/Image_Attaque_4/01-arp-sain.png Graphic file (type png)
+<use Image/Image_Attaque_4/01-arp-sain.png>
+Package pdftex.def Info: Image/Image_Attaque_4/01-arp-sain.png  used on input l
+ine 799.
+(pdftex.def)             Requested size: 415.38979pt x 173.03162pt.
+<Image/Image_Attaque_4/capture_3.jpg, id=561, 627.34375pt x 142.5325pt>
 File: Image/Image_Attaque_4/capture_3.jpg Graphic file (type jpg)
 <use Image/Image_Attaque_4/capture_3.jpg>
 Package pdftex.def Info: Image/Image_Attaque_4/capture_3.jpg  used on input lin
 e 816.
 (pdftex.def)             Requested size: 415.38979pt x 94.38055pt.
-<Image/Image_Attaque_4/capture_4.jpg, id=567, 624.3325pt x 210.7875pt>
-File: Image/Image_Attaque_4/capture_4.jpg Graphic file (type jpg)
-<use Image/Image_Attaque_4/capture_4.jpg>
-Package pdftex.def Info: Image/Image_Attaque_4/capture_4.jpg  used on input lin
-e 841.
+ [20 <./Image/Image_Attaque_4/01-arp-sain.png (PNG copy)>]
+<Image/Image_Attaque_4/04-event-json.png, id=567, 624.3325pt x 210.7875pt>
+File: Image/Image_Attaque_4/04-event-json.png Graphic file (type png)
+<use Image/Image_Attaque_4/04-event-json.png>
+Package pdftex.def Info: Image/Image_Attaque_4/04-event-json.png  used on input
+ line 841.
 (pdftex.def)             Requested size: 472.03123pt x 159.37035pt.
- [21 <./Image/Image_Attaque_4/capture_3.jpg> <./Image/Image_Attaque_4/capture_4
-.jpg>]
-<Image/Image_Attaque_4/capture_5.jpg, id=573, 634.37pt x 237.88875pt>
-File: Image/Image_Attaque_4/capture_5.jpg Graphic file (type jpg)
-<use Image/Image_Attaque_4/capture_5.jpg>
-Package pdftex.def Info: Image/Image_Attaque_4/capture_5.jpg  used on input lin
-e 862.
+<Image/Image_Attaque_4/05-anomalie-jq.png, id=569, 634.37pt x 237.88875pt>
+File: Image/Image_Attaque_4/05-anomalie-jq.png Graphic file (type png)
+<use Image/Image_Attaque_4/05-anomalie-jq.png>
+Package pdftex.def Info: Image/Image_Attaque_4/05-anomalie-jq.png  used on inpu
+t line 862.
 (pdftex.def)             Requested size: 354.02342pt x 132.76305pt.
-<Image/Image_Attaque_4/capture_6.jpg, id=575, 577.15625pt x 240.9pt>
+ [21 <./Image/Image_Attaque_4/capture_3.jpg> <./Image/Image_Attaque_4/04-event-
+json.png (PNG copy)>]
+<Image/Image_Attaque_4/capture_6.jpg, id=575, 1573.88pt x 657.45625pt>
 File: Image/Image_Attaque_4/capture_6.jpg Graphic file (type jpg)
 <use Image/Image_Attaque_4/capture_6.jpg>
 Package pdftex.def Info: Image/Image_Attaque_4/capture_6.jpg  used on input lin
 e 889.
-(pdftex.def)             Requested size: 354.02342pt x 147.77216pt.
+(pdftex.def)             Requested size: 354.02342pt x 147.88115pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 923--923
 []|\T1/lmr/m/n/12 (+20) Entrées ARP
@@ -1431,7 +1429,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 934--934
 []|\T1/lmr/m/n/12 (+20) Chiffrement de
  []
 
-
+[22 <./Image/Image_Attaque_4/05-anomalie-jq.png (PNG copy)> <./Image/Image_Atta
+que_4/capture_6.jpg>]
 Overfull \hbox (34.97871pt too wide) in paragraph at lines 945--953
 \T1/lmr/m/n/12 (-20) L'attaque a corrompu avec succès le cache ARP de la victim
 e (\T1/lmtt/m/n/12 192.168.56.1 $\OMS/lmsy/m/n/12 !$ \T1/lmtt/m/n/12 00:11:22:3
@@ -1444,8 +1443,7 @@ Overfull \hbox (3.40831pt too wide) in paragraph at lines 945--953
 une analyse IP$\OMS/lmsy/m/n/12 $$\T1/lmr/m/n/12 (-20) MAC (4534 événements,
  []
 
-[22 <./Image/Image_Attaque_4/capture_5.jpg>] [23 <./Image/Image_Attaque_4/captu
-re_6.jpg>]
+[23]
 Overfull \hbox (36.60388pt too wide) in paragraph at lines 990--995
 \T1/lmr/m/n/12 (-20) (\T1/lmtt/m/n/12 default-rule-path \T1/lmr/m/n/12 (-20) da
 ns \T1/lmtt/m/n/12 suricata.yaml\T1/lmr/m/n/12 (-20) ), typiquement \T1/lmtt/m/
@@ -1459,20 +1457,20 @@ File: Image/Image_Attaque_5/capture_1.png Graphic file (type png)
 Package pdftex.def Info: Image/Image_Attaque_5/capture_1.png  used on input lin
 e 1026.
 (pdftex.def)             Requested size: 434.26787pt x 282.83638pt.
- [25 <./Image/Image_Attaque_5/capture_1.png (PNG copy)>]
-<Image/Image_Attaque_5/capture_2.png, id=598, 933.4875pt x 392.46625pt>
+<Image/Image_Attaque_5/capture_2.png, id=594, 933.4875pt x 392.46625pt>
 File: Image/Image_Attaque_5/capture_2.png Graphic file (type png)
 <use Image/Image_Attaque_5/capture_2.png>
 Package pdftex.def Info: Image/Image_Attaque_5/capture_2.png  used on input lin
 e 1046.
 (pdftex.def)             Requested size: 472.03123pt x 198.45438pt.
-<Image/Image_Attaque_5/capture_3.jpg, id=600, 625.33624pt x 323.2075pt>
+<Image/Image_Attaque_5/capture_3.jpg, id=596, 625.33624pt x 323.2075pt>
 File: Image/Image_Attaque_5/capture_3.jpg Graphic file (type jpg)
 <use Image/Image_Attaque_5/capture_3.jpg>
 Package pdftex.def Info: Image/Image_Attaque_5/capture_3.jpg  used on input lin
 e 1065.
 (pdftex.def)             Requested size: 472.03123pt x 243.97826pt.
- [26 <./Image/Image_Attaque_5/capture_2.png (PNG copy)>]
+ [25 <./Image/Image_Attaque_5/capture_1.png (PNG copy)>] [26 <./Image/Image_Att
+aque_5/capture_2.png (PNG copy)>]
 Overfull \hbox (21.8326pt too wide) in paragraph at lines 1117--1120
 []\T1/lmr/m/n/12 (-20) Résultat attendu : exploitation réussie sur DVWA, alerte
  d'une règle Suricata locale (\T1/lmtt/m/n/12 sid:1000003\T1/lmr/m/n/12 (-20) )
@@ -1492,14 +1490,14 @@ File: Image/Image_Attaque_6/capture_1.jpg Graphic file (type jpg)
 Package pdftex.def Info: Image/Image_Attaque_6/capture_1.jpg  used on input lin
 e 1179.
 (pdftex.def)             Requested size: 472.03123pt x 477.6706pt.
-[28]
-<Image/Image_Attaque_6/capture_2.jpg, id=617, 601.24625pt x 240.9pt>
+<Image/Image_Attaque_6/capture_2.jpg, id=613, 601.24625pt x 240.9pt>
 File: Image/Image_Attaque_6/capture_2.jpg Graphic file (type jpg)
 <use Image/Image_Attaque_6/capture_2.jpg>
 Package pdftex.def Info: Image/Image_Attaque_6/capture_2.jpg  used on input lin
 e 1197.
 (pdftex.def)             Requested size: 472.03123pt x 189.13263pt.
-<Image/Image_Attaque_6/capture_3.jpg, id=619, 625.33624pt x 229.85875pt>
+[28] [29 <./Image/Image_Attaque_6/capture_1.jpg>]
+<Image/Image_Attaque_6/capture_3.jpg, id=623, 625.33624pt x 229.85875pt>
 File: Image/Image_Attaque_6/capture_3.jpg Graphic file (type jpg)
 <use Image/Image_Attaque_6/capture_3.jpg>
 Package pdftex.def Info: Image/Image_Attaque_6/capture_3.jpg  used on input lin
@@ -1512,13 +1510,12 @@ icative \T1/lmr/m/n/12 (-20) (OWASP, couche 7) au projet : cible volontairement
 
  []
 
-[29] [30 <./Image/Image_Attaque_6/capture_1.jpg>] [31 <./Image/Image_Attaque_6/
-capture_2.jpg> <./Image/Image_Attaque_6/capture_3.jpg>]
+[30 <./Image/Image_Attaque_6/capture_2.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 1253--1254
 
  []
 
-[32]
+[31 <./Image/Image_Attaque_6/capture_3.jpg>] [32]
 Overfull \hbox (1.8695pt too wide) in paragraph at lines 1283--1284
 []\T1/lmr/m/n/12 (-20) De plus, l'ajout de mécanismes d'\T1/lmr/bx/n/12 (-20) a
 pprentissage automatique \T1/lmr/m/n/12 (-20) (\T1/lmr/m/it/12 (-20) Machine Le
@@ -1540,12 +1537,12 @@ Package rerunfilecheck Info: File `main.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  37067 strings out of 467871
- 850744 string characters out of 5418376
+ 850863 string characters out of 5418376
  1410527 words of memory out of 5000000
  65073 multiletter control sequences out of 15000+600000
  693999 words of font info for 161 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,104p,1003b,707s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,11n,104p,1003b,705s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pf
 b><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.p
 fb><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pf
@@ -1553,7 +1550,7 @@ b><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pf
 b><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pf
 b><C:/Users/simon/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pf
 b>
-Output written on main.pdf (34 pages, 2173456 bytes).
+Output written on main.pdf (34 pages, 2601720 bytes).
 PDF statistics:
  707 PDF objects out of 1000 (max. 8388607)
  140 named destinations out of 1000 (max. 500000)
