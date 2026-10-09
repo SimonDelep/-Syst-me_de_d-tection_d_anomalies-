@@ -1,53 +1,64 @@
 \babel@toc {nil}{}\relax 
 \contentsline {section}{List of Figures}{3}{section*.1}%
 \contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
-\contentsline {section}{\numberline {2}Scénario 1 : Attaque Active MQ (CVE-2023-46604)}{4}{section.2}%
+\contentsline {section}{\numberline {2}Scénario 1 : Exploitation d'un WordPress vulnérable (CVE-2016-10033)}{4}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Contexte et objectif}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Environnement de test}{4}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Phase 1 : préparation de la charge utile}{4}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Phase 2 : exploitation et preuve de RCE}{5}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Phase 3 : détection par la chaîne de supervision}{5}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}Synthèse}{7}{subsection.2.6}%
-\contentsline {section}{\numberline {3}Scénario 2 : exploitation d'un WordPress vulnérable (CVE-2016-10033)}{7}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Contexte et objectif}{7}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Environnement de test}{7}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Phase 1 : reconnaissance}{8}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Phase 2 : préparation de la charge utile}{8}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Phase 3 : exploitation et exécution de code à distance}{9}{subsection.3.5}%
-\contentsline {subsection}{\numberline {3.6}Phase 4 : post-exploitation}{9}{subsection.3.6}%
-\contentsline {subsection}{\numberline {3.7}Phase 5 : détection par la chaîne de supervision}{11}{subsection.3.7}%
-\contentsline {subsection}{\numberline {3.8}Synthèse}{12}{subsection.3.8}%
-\contentsline {section}{\numberline {4}Scénario 3}{12}{section.4}%
-\contentsline {section}{\numberline {5}Scénario 4 : usurpation ARP (ARP spoofing)}{12}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Contexte et objectif}{12}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Environnement de test}{12}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Préparation du capteur}{13}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Phase 1 : état initial de la victime}{13}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Phase 2 : lancement de l'usurpation}{14}{subsection.5.5}%
-\contentsline {subsection}{\numberline {5.6}Phase 3 : impact sur la victime}{14}{subsection.5.6}%
-\contentsline {subsection}{\numberline {5.7}Phase 4 : détection et analyse}{15}{subsection.5.7}%
-\contentsline {subsubsection}{\numberline {5.7.1}Volume capturé}{15}{subsubsection.5.7.1}%
-\contentsline {subsubsection}{\numberline {5.7.2}Exemple d'événement falsifié}{15}{subsubsection.5.7.2}%
-\contentsline {subsubsection}{\numberline {5.7.3}Anomalie comportementale~: une IP, deux MAC}{15}{subsubsection.5.7.3}%
-\contentsline {subsection}{\numberline {5.8}Visualisation dans Kibana}{16}{subsection.5.8}%
-\contentsline {subsection}{\numberline {5.9}Contre-mesures}{18}{subsection.5.9}%
-\contentsline {subsection}{\numberline {5.10}Synthèse}{18}{subsection.5.10}%
-\contentsline {section}{\numberline {6}Scénario 5 : déni de service SYN flood}{18}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Contexte et objectif}{18}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Environnement de test}{18}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Règle de détection Suricata}{18}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Phase 1 : exécution de l'attaque}{19}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Phase 2 : détection Suricata}{20}{subsection.6.5}%
-\contentsline {subsection}{\numberline {6.6}Phase 3 : visualisation dans Kibana}{20}{subsection.6.6}%
-\contentsline {subsection}{\numberline {6.7}Dépannage et leçons apprises}{20}{subsection.6.7}%
-\contentsline {subsection}{\numberline {6.8}Synthèse}{22}{subsection.6.8}%
-\contentsline {section}{\numberline {7}Scénario 6 : injection SQL (DVWA)}{22}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Contexte et objectif}{22}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Environnement de test}{22}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Phase 1 : déploiement de DVWA}{22}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Phase 2 : règle de détection}{22}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.5}Phase 3 : exploitation}{23}{subsection.7.5}%
-\contentsline {subsection}{\numberline {7.6}Phase 4 : détection et Kibana}{23}{subsection.7.6}%
-\contentsline {subsection}{\numberline {7.7}Synthèse}{26}{subsection.7.7}%
-\contentsline {section}{\numberline {8}Résultat et Discussion}{26}{section.8}%
-\contentsline {section}{\numberline {9}Conclusion}{26}{section.9}%
+\contentsline {subsection}{\numberline {2.2}Environnement de test}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Phase 1 : reconnaissance}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Phase 2 : préparation de la charge utile}{6}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Phase 3 : exploitation et exécution de code à distance}{7}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Phase 4 : post-exploitation}{7}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Phase 5 : détection par la chaîne de supervision}{8}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Synthèse}{10}{subsection.2.8}%
+\contentsline {section}{\numberline {3}Scénario 2 : Attaque Active MQ (CVE-2023-46604)}{10}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Contexte et objectif}{10}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Environnement de test}{10}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Phase 1 : préparation de la charge utile}{10}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Phase 2 : exploitation et preuve de RCE}{11}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Phase 3 : détection par la chaîne de supervision}{11}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Synthèse}{14}{subsection.3.6}%
+\contentsline {section}{\numberline {4}Scénario 3 : Brute-force SSH}{14}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Contexte et objectif}{14}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Environnement de test}{14}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Phase 1 : état initial de la victime}{14}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Phase 2 : préparation et attaque}{15}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Phase 3 : détection par la chaîne de supervision}{16}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Phase 4 : visualisation dans Kibana}{17}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Synthèse}{18}{subsection.4.7}%
+\contentsline {section}{\numberline {5}Scénario 4 : Usurpation ARP (ARP spoofing)}{18}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Contexte et objectif}{18}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Environnement de test}{18}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Préparation du capteur}{19}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Phase 1 : état initial de la victime}{19}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Phase 2 : lancement de l'usurpation}{19}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Phase 3 : impact sur la victime}{20}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Phase 4 : détection et analyse}{21}{subsection.5.7}%
+\contentsline {subsubsection}{\numberline {5.7.1}Volume capturé}{21}{subsubsection.5.7.1}%
+\contentsline {subsubsection}{\numberline {5.7.2}Exemple d'événement falsifié}{21}{subsubsection.5.7.2}%
+\contentsline {subsubsection}{\numberline {5.7.3}Anomalie comportementale~: une IP, deux MAC}{22}{subsubsection.5.7.3}%
+\contentsline {subsection}{\numberline {5.8}Visualisation dans Kibana}{22}{subsection.5.8}%
+\contentsline {subsection}{\numberline {5.9}Contre-mesures}{22}{subsection.5.9}%
+\contentsline {subsection}{\numberline {5.10}Synthèse}{22}{subsection.5.10}%
+\contentsline {section}{\numberline {6}Scénario 5 : Déni de service SYN flood}{24}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Contexte et objectif}{24}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Environnement de test}{24}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Règle de détection Suricata}{24}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Phase 1 : exécution de l'attaque}{25}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Phase 2 : détection Suricata}{25}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Phase 3 : visualisation dans Kibana}{26}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}Dépannage et leçons apprises}{27}{subsection.6.7}%
+\contentsline {subsection}{\numberline {6.8}Synthèse}{27}{subsection.6.8}%
+\contentsline {section}{\numberline {7}Scénario 6 : injection SQL (DVWA)}{27}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Contexte et objectif}{27}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Environnement de test}{28}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Phase 1 : déploiement de DVWA}{28}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Phase 2 : règle de détection}{28}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Phase 3 : exploitation}{28}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Phase 4 : détection et Kibana}{29}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.7}Synthèse}{29}{subsection.7.7}%
+\contentsline {section}{\numberline {8}Résultat et Discussion}{29}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Analyse des détections}{32}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Limites du projet}{32}{subsection.8.2}%
+\contentsline {section}{\numberline {9}Conclusion}{32}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Améliorations possibles}{33}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Perspectives}{33}{subsection.9.2}%

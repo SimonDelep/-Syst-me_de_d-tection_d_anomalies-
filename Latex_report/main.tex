@@ -59,7 +59,7 @@
 	%------------------------------------------------
 	
 	
-	\includegraphics[width=0.5\textwidth]{Latex_report/Image/logo.jpg}\\[2cm] % Include a department/university logo - this will require the graphicx package
+	\includegraphics[width=0.5\textwidth]{Image/logo.jpg}\\[2cm] % Include a department/university logo - this will require the graphicx package
 	
 	\textsc{\Large Département d'informatique et de mathématique}\\[0.5cm] % Major heading such as course name
 	
@@ -328,6 +328,14 @@ provenant du poste attaquant.
   \label{tab:wp_fields}
 \end{table}
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{Image/image_attaque_1/kibana.png}
+  \caption{Événements Suricata filtrés avec les champs cités précédemment }
+   \label{fig:mq_kibana}
+\end{figure}
+
+
 \subsection{Synthèse}
 
 Ce scénario démontre qu'une vulnérabilité applicative connue permet, en quelques
@@ -495,6 +503,21 @@ scénario.
   \label{tab:mq_fields}
 \end{table}
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{Image/Image_Attaque_2/Kibana1.png}
+  \caption{Filtrage des logs Kibana avec les champs cités précédemment, ciblé sur le XML}
+  \label{fig:wp_Kibana_XML}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{Image/Image_Attaque_2/Kibana2.png}
+  \caption{Filtrage des logs Kibana avec les champs cités précédemment, ciblé sur le flux Java/OpenWire}
+  \label{fig:wp_Kibana_OpenWire}
+\end{figure}
+
+
 Exemples de requêtes KQL~:
 \texttt{destination.port : 61616 and source.ip : "192.168.2.12"} pour le
 flux OpenWire~;
@@ -656,7 +679,7 @@ Au niveau de Kibana, dans la section \textbf{Discover}, en tapant la requête \t
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.95\linewidth]{Latex_report/Image/Image_Attaque_3/brute_force_ssh_kibana.png}
+  \includegraphics[width=0.95\linewidth]{Image/Image_Attaque_3/brute_force_ssh_kibana.png}
   \caption{Visualisation du brute-force SSH dans Kibana}
   \label{fig:brute_force_ssh_kibana}
 \end{figure}

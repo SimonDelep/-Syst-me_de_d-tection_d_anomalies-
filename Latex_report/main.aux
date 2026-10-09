@@ -8,127 +8,157 @@
 \@writefile{toc}{\contentsline {section}{List of Figures}{3}{section*.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{4}{section.1}\protected@file@percent }
 \newlabel{sec:Q1}{{1}{4}{Introduction}{section.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Scénario 1 : Attaque Active MQ (CVE-2023-46604)}{4}{section.2}\protected@file@percent }
-\newlabel{sec:Q2}{{2}{4}{Scénario 1 : Attaque Active MQ (CVE-2023-46604)}{section.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Scénario 1 : Exploitation d'un WordPress vulnérable (CVE-2016-10033)}{4}{section.2}\protected@file@percent }
+\newlabel{sec:Q3}{{2}{4}{Scénario 1 : Exploitation d'un WordPress vulnérable (CVE-2016-10033)}{section.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Contexte et objectif}{4}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Environnement de test}{4}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Phase 1 : préparation de la charge utile}{4}{subsection.2.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Serveur HTTP de l'attaquant (port~6666) prêt à servir \texttt  {poc.xml}.}}{5}{figure.caption.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Environnement de test}{5}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Phase 1 : reconnaissance}{5}{subsection.2.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Balayage \texttt  {nmap} révélant les ports ouverts de la cible.}}{5}{figure.caption.3}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:mq_http}{{1}{5}{Serveur HTTP de l'attaquant (port~6666) prêt à servir \texttt {poc.xml}}{figure.caption.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Phase 2 : exploitation et preuve de RCE}{5}{subsection.2.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Lancement de \texttt  {poc.py} contre \texttt  {192.168.2.90:61616}.}}{5}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:mq_poc}{{2}{5}{Lancement de \texttt {poc.py} contre \texttt {192.168.2.90:61616}}{figure.caption.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Téléchargement de \texttt  {poc.xml} par la cible depuis le serveur HTTP de l'attaquant.}}{5}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:mq_get}{{3}{5}{Téléchargement de \texttt {poc.xml} par la cible depuis le serveur HTTP de l'attaquant}{figure.caption.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Phase 3 : détection par la chaîne de supervision}{5}{subsection.2.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Preuve de RCE~: fichier témoin présent dans le conteneur ActiveMQ.}}{6}{figure.caption.6}\protected@file@percent }
-\newlabel{fig:mq_proof}{{4}{6}{Preuve de RCE~: fichier témoin présent dans le conteneur ActiveMQ}{figure.caption.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Événements Suricata filtrés sur l'adresse de l'attaquant (\texttt  {192.168.2.12}).}}{6}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:mq_suricata}{{5}{6}{Événements Suricata filtrés sur l'adresse de l'attaquant (\texttt {192.168.2.12})}{figure.caption.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Champs Elasticsearch pour retrouver l'attaque ActiveMQ dans Kibana.}}{6}{table.caption.8}\protected@file@percent }
-\newlabel{tab:mq_fields}{{1}{6}{Champs Elasticsearch pour retrouver l'attaque ActiveMQ dans Kibana}{table.caption.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Synthèse}{7}{subsection.2.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Scénario 2 : exploitation d'un WordPress vulnérable (CVE-2016-10033)}{7}{section.3}\protected@file@percent }
-\newlabel{sec:Q3}{{3}{7}{Scénario 2 : exploitation d'un WordPress vulnérable (CVE-2016-10033)}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Contexte et objectif}{7}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Environnement de test}{7}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Phase 1 : reconnaissance}{8}{subsection.3.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Balayage \texttt  {nmap} révélant les ports ouverts de la cible.}}{8}{figure.caption.9}\protected@file@percent }
-\newlabel{fig:wp_nmap}{{6}{8}{Balayage \texttt {nmap} révélant les ports ouverts de la cible}{figure.caption.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Identification du serveur web et de la version de PHP via les en-têtes HTTP.}}{8}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:wp_login}{{7}{8}{Identification du serveur web et de la version de PHP via les en-têtes HTTP}{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Phase 2 : préparation de la charge utile}{8}{subsection.3.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Serveur HTTP de l'attaquant hébergeant la charge utile \texttt  {1.txt}.}}{9}{figure.caption.11}\protected@file@percent }
-\newlabel{fig:wp_python}{{8}{9}{Serveur HTTP de l'attaquant hébergeant la charge utile \texttt {1.txt}}{figure.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Contenu de la charge utile~: dépôt du webshell \texttt  {ids.php} dans la racine web.}}{9}{figure.caption.12}\protected@file@percent }
-\newlabel{fig:wp_payload}{{9}{9}{Contenu de la charge utile~: dépôt du webshell \texttt {ids.php} dans la racine web}{figure.caption.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Phase 3 : exploitation et exécution de code à distance}{9}{subsection.3.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Preuve de l'exécution de code à distance~: le webshell renvoie l'identité \texttt  {www-data}.}}{9}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:wp_rce}{{10}{9}{Preuve de l'exécution de code à distance~: le webshell renvoie l'identité \texttt {www-data}}{figure.caption.13}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Phase 4 : post-exploitation}{9}{subsection.3.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Exécution de commandes via le webshell~: \texttt  {whoami} et lecture de \texttt  {/etc/passwd}.}}{10}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:wp_passwd}{{11}{10}{Exécution de commandes via le webshell~: \texttt {whoami} et lecture de \texttt {/etc/passwd}}{figure.caption.14}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Énumération de la racine web \texttt  {/var/www/html} à travers le webshell.}}{10}{figure.caption.15}\protected@file@percent }
-\newlabel{fig:wp_ls}{{12}{10}{Énumération de la racine web \texttt {/var/www/html} à travers le webshell}{figure.caption.15}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Phase 5 : détection par la chaîne de supervision}{11}{subsection.3.7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Événement HTTP enregistré par Suricata correspondant à l'appel du webshell.}}{11}{figure.caption.16}\protected@file@percent }
-\newlabel{fig:wp_evejson}{{13}{11}{Événement HTTP enregistré par Suricata correspondant à l'appel du webshell}{figure.caption.16}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Capture en temps réel des requêtes vers \texttt  {ids.php} dans \texttt  {eve.json}.}}{11}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:wp_tail}{{14}{11}{Capture en temps réel des requêtes vers \texttt {ids.php} dans \texttt {eve.json}}{figure.caption.17}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Principaux champs Elasticsearch permettant de retrouver l'attaque dans Kibana.}}{11}{table.caption.18}\protected@file@percent }
-\newlabel{tab:wp_fields}{{2}{11}{Principaux champs Elasticsearch permettant de retrouver l'attaque dans Kibana}{table.caption.18}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Synthèse}{12}{subsection.3.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Scénario 3}{12}{section.4}\protected@file@percent }
-\newlabel{sec:Q4}{{4}{12}{Scénario 3}{section.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Scénario 4 : usurpation ARP (ARP spoofing)}{12}{section.5}\protected@file@percent }
-\newlabel{sec:Q5}{{5}{12}{Scénario 4 : usurpation ARP (ARP spoofing)}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Contexte et objectif}{12}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Environnement de test}{12}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Préparation du capteur}{13}{subsection.5.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Phase 1 : état initial de la victime}{13}{subsection.5.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Table ARP saine (\texttt  {0a:00:27:00:00:0b}) et \texttt  {ping} réussi.}}{13}{figure.caption.19}\protected@file@percent }
-\newlabel{fig:arp_before}{{15}{13}{Table ARP saine (\texttt {0a:00:27:00:00:0b}) et \texttt {ping} réussi}{figure.caption.19}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Phase 2 : lancement de l'usurpation}{14}{subsection.5.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Script Scapy en cours d'exécution sur le poste attaquant.}}{14}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:arp_script}{{16}{14}{Script Scapy en cours d'exécution sur le poste attaquant}{figure.caption.20}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Phase 3 : impact sur la victime}{14}{subsection.5.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Table ARP empoisonnée~: \texttt  {192.168.56.1} associé à \texttt  {00:11:22:33:44:55}.}}{15}{figure.caption.21}\protected@file@percent }
-\newlabel{fig:arp_after}{{17}{15}{Table ARP empoisonnée~: \texttt {192.168.56.1} associé à \texttt {00:11:22:33:44:55}}{figure.caption.21}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Phase 4 : détection et analyse}{15}{subsection.5.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.1}Volume capturé}{15}{subsubsection.5.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.2}Exemple d'événement falsifié}{15}{subsubsection.5.7.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Événement \texttt  {event\_type: arp} falsifié dans \texttt  {eve.json}.}}{15}{figure.caption.22}\protected@file@percent }
-\newlabel{fig:arp_eve}{{18}{15}{Événement \texttt {event\_type: arp} falsifié dans \texttt {eve.json}}{figure.caption.22}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.3}Anomalie comportementale~: une IP, deux MAC}{15}{subsubsection.5.7.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Corrélation \texttt  {jq}~: \texttt  {192.168.56.1} revendiquée par deux MAC.}}{16}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:arp_jq}{{19}{16}{Corrélation \texttt {jq}~: \texttt {192.168.56.1} revendiquée par deux MAC}{figure.caption.23}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Visualisation dans Kibana}{16}{subsection.5.8}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Champs Elasticsearch pour l'analyse ARP dans Kibana.}}{16}{table.caption.25}\protected@file@percent }
-\newlabel{tab:arp_fields}{{3}{16}{Champs Elasticsearch pour l'analyse ARP dans Kibana}{table.caption.25}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Table Kibana~: \texttt  {192.168.56.1} associée à deux adresses MAC.}}{17}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:arp_kibana}{{20}{17}{Table Kibana~: \texttt {192.168.56.1} associée à deux adresses MAC}{figure.caption.24}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Contre-mesures face à l'usurpation ARP.}}{17}{table.caption.26}\protected@file@percent }
-\newlabel{tab:arp_mitigation}{{4}{17}{Contre-mesures face à l'usurpation ARP}{table.caption.26}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Contre-mesures}{18}{subsection.5.9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Synthèse}{18}{subsection.5.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Scénario 5 : déni de service SYN flood}{18}{section.6}\protected@file@percent }
-\newlabel{sec:Q6}{{6}{18}{Scénario 5 : déni de service SYN flood}{section.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Contexte et objectif}{18}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Environnement de test}{18}{subsection.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Règle de détection Suricata}{18}{subsection.6.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Phase 1 : exécution de l'attaque}{19}{subsection.6.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Exécution de \texttt  {syn\_flood.py}~: 3\,000 paquets SYN vers la VM.}}{19}{figure.caption.27}\protected@file@percent }
-\newlabel{fig:syn_exec}{{21}{19}{Exécution de \texttt {syn\_flood.py}~: 3\,000 paquets SYN vers la VM}{figure.caption.27}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Phase 2 : détection Suricata}{20}{subsection.6.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Alertes «~LOCAL SYN Flood - possible DoS~» (\texttt  {sid:1000002}) dans \texttt  {fast.log}.}}{20}{figure.caption.28}\protected@file@percent }
-\newlabel{fig:syn_fastlog}{{22}{20}{Alertes «~LOCAL SYN Flood - possible DoS~» (\texttt {sid:1000002}) dans \texttt {fast.log}}{figure.caption.28}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Phase 3 : visualisation dans Kibana}{20}{subsection.6.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Dépannage et leçons apprises}{20}{subsection.6.7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Kibana~: pic d'alertes \texttt  {rule.id:1000002} correspondant au SYN flood.}}{21}{figure.caption.29}\protected@file@percent }
-\newlabel{fig:syn_kibana}{{23}{21}{Kibana~: pic d'alertes \texttt {rule.id:1000002} correspondant au SYN flood}{figure.caption.29}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Champs utiles pour filtrer le SYN flood dans Kibana.}}{21}{table.caption.30}\protected@file@percent }
-\newlabel{tab:syn_fields}{{5}{21}{Champs utiles pour filtrer le SYN flood dans Kibana}{table.caption.30}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.8}Synthèse}{22}{subsection.6.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Scénario 6 : injection SQL (DVWA)}{22}{section.7}\protected@file@percent }
-\newlabel{sec:Q7}{{7}{22}{Scénario 6 : injection SQL (DVWA)}{section.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Contexte et objectif}{22}{subsection.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Environnement de test}{22}{subsection.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Phase 1 : déploiement de DVWA}{22}{subsection.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Phase 2 : règle de détection}{22}{subsection.7.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Phase 3 : exploitation}{23}{subsection.7.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.6}Phase 4 : détection et Kibana}{23}{subsection.7.6}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Champs Kibana pour retrouver l'injection SQL.}}{23}{table.caption.34}\protected@file@percent }
-\newlabel{tab:sqli_fields}{{6}{23}{Champs Kibana pour retrouver l'injection SQL}{table.caption.34}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Résultat de l'injection UNION dans DVWA~: comptes et hachés MD5 affichés.}}{24}{figure.caption.31}\protected@file@percent }
-\newlabel{fig:sqli_dvwa}{{24}{24}{Résultat de l'injection UNION dans DVWA~: comptes et hachés MD5 affichés}{figure.caption.31}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Règle \texttt  {1000003}, rechargement et alerte dans \texttt  {fast.log}.}}{25}{figure.caption.32}\protected@file@percent }
-\newlabel{fig:sqli_rule}{{25}{25}{Règle \texttt {1000003}, rechargement et alerte dans \texttt {fast.log}}{figure.caption.32}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Alerte d'injection SQL (\texttt  {rule.id:1000003}) dans Kibana.}}{25}{figure.caption.33}\protected@file@percent }
-\newlabel{fig:sqli_kibana}{{26}{25}{Alerte d'injection SQL (\texttt {rule.id:1000003}) dans Kibana}{figure.caption.33}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.7}Synthèse}{26}{subsection.7.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8}Résultat et Discussion}{26}{section.8}\protected@file@percent }
-\newlabel{sec:Q8}{{8}{26}{Résultat et Discussion}{section.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{26}{section.9}\protected@file@percent }
-\newlabel{sec:Q9}{{9}{26}{Conclusion}{section.9}{}}
-\gdef \@abspage@last{27}
+\newlabel{fig:wp_nmap}{{1}{5}{Balayage \texttt {nmap} révélant les ports ouverts de la cible}{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Identification du serveur web et de la version de PHP via les en-têtes HTTP.}}{6}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:wp_login}{{2}{6}{Identification du serveur web et de la version de PHP via les en-têtes HTTP}{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Phase 2 : préparation de la charge utile}{6}{subsection.2.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Serveur HTTP de l'attaquant hébergeant la charge utile \texttt  {1.txt}.}}{6}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:wp_python}{{3}{6}{Serveur HTTP de l'attaquant hébergeant la charge utile \texttt {1.txt}}{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Contenu de la charge utile~: dépôt du webshell \texttt  {ids.php} dans la racine web.}}{6}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:wp_payload}{{4}{6}{Contenu de la charge utile~: dépôt du webshell \texttt {ids.php} dans la racine web}{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Phase 3 : exploitation et exécution de code à distance}{7}{subsection.2.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Preuve de l'exécution de code à distance~: le webshell renvoie l'identité \texttt  {www-data}.}}{7}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:wp_rce}{{5}{7}{Preuve de l'exécution de code à distance~: le webshell renvoie l'identité \texttt {www-data}}{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Phase 4 : post-exploitation}{7}{subsection.2.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Exécution de commandes via le webshell~: \texttt  {whoami} et lecture de \texttt  {/etc/passwd}.}}{7}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:wp_passwd}{{6}{7}{Exécution de commandes via le webshell~: \texttt {whoami} et lecture de \texttt {/etc/passwd}}{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Énumération de la racine web \texttt  {/var/www/html} à travers le webshell.}}{8}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:wp_ls}{{7}{8}{Énumération de la racine web \texttt {/var/www/html} à travers le webshell}{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7}Phase 5 : détection par la chaîne de supervision}{8}{subsection.2.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Événement HTTP enregistré par Suricata correspondant à l'appel du webshell.}}{8}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:wp_evejson}{{8}{8}{Événement HTTP enregistré par Suricata correspondant à l'appel du webshell}{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Capture en temps réel des requêtes vers \texttt  {ids.php} dans \texttt  {eve.json}.}}{9}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:wp_tail}{{9}{9}{Capture en temps réel des requêtes vers \texttt {ids.php} dans \texttt {eve.json}}{figure.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Principaux champs Elasticsearch permettant de retrouver l'attaque dans Kibana.}}{9}{table.caption.12}\protected@file@percent }
+\newlabel{tab:wp_fields}{{1}{9}{Principaux champs Elasticsearch permettant de retrouver l'attaque dans Kibana}{table.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Événements Suricata filtrés avec les champs cités précédemment }}{9}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:mq_kibana}{{10}{9}{Événements Suricata filtrés avec les champs cités précédemment}{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8}Synthèse}{10}{subsection.2.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Scénario 2 : Attaque Active MQ (CVE-2023-46604)}{10}{section.3}\protected@file@percent }
+\newlabel{sec:Q2}{{3}{10}{Scénario 2 : Attaque Active MQ (CVE-2023-46604)}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Contexte et objectif}{10}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Environnement de test}{10}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Phase 1 : préparation de la charge utile}{10}{subsection.3.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Serveur HTTP de l'attaquant (port~6666) prêt à servir \texttt  {poc.xml}.}}{11}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:mq_http}{{11}{11}{Serveur HTTP de l'attaquant (port~6666) prêt à servir \texttt {poc.xml}}{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Phase 2 : exploitation et preuve de RCE}{11}{subsection.3.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Lancement de \texttt  {poc.py} contre \texttt  {192.168.2.90:61616}.}}{11}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:mq_poc}{{12}{11}{Lancement de \texttt {poc.py} contre \texttt {192.168.2.90:61616}}{figure.caption.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Téléchargement de \texttt  {poc.xml} par la cible depuis le serveur HTTP de l'attaquant.}}{11}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:mq_get}{{13}{11}{Téléchargement de \texttt {poc.xml} par la cible depuis le serveur HTTP de l'attaquant}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Phase 3 : détection par la chaîne de supervision}{11}{subsection.3.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Preuve de RCE~: fichier témoin présent dans le conteneur ActiveMQ.}}{12}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:mq_proof}{{14}{12}{Preuve de RCE~: fichier témoin présent dans le conteneur ActiveMQ}{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Événements Suricata filtrés sur l'adresse de l'attaquant (\texttt  {192.168.2.12}).}}{12}{figure.caption.18}\protected@file@percent }
+\newlabel{fig:mq_suricata}{{15}{12}{Événements Suricata filtrés sur l'adresse de l'attaquant (\texttt {192.168.2.12})}{figure.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Champs Elasticsearch pour retrouver l'attaque ActiveMQ dans Kibana.}}{12}{table.caption.19}\protected@file@percent }
+\newlabel{tab:mq_fields}{{2}{12}{Champs Elasticsearch pour retrouver l'attaque ActiveMQ dans Kibana}{table.caption.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Filtrage des logs Kibana avec les champs cités précédemment, ciblé sur le XML}}{13}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:wp_Kibana_XML}{{16}{13}{Filtrage des logs Kibana avec les champs cités précédemment, ciblé sur le XML}{figure.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Filtrage des logs Kibana avec les champs cités précédemment, ciblé sur le flux Java/OpenWire}}{13}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:wp_Kibana_OpenWire}{{17}{13}{Filtrage des logs Kibana avec les champs cités précédemment, ciblé sur le flux Java/OpenWire}{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Synthèse}{14}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Scénario 3 : Brute-force SSH}{14}{section.4}\protected@file@percent }
+\newlabel{sec:Q4}{{4}{14}{Scénario 3 : Brute-force SSH}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Contexte et objectif}{14}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Environnement de test}{14}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Phase 1 : état initial de la victime}{14}{subsection.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Configuration du fichier \texttt  {suricata.yaml}.}}{15}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:config_suricata}{{18}{15}{Configuration du fichier \texttt {suricata.yaml}}{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Phase 2 : préparation et attaque}{15}{subsection.4.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Fichiers d'identifiants et de mots de passe pour le brute-force SSH.}}{16}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:brute_ssh_id_mdp}{{19}{16}{Fichiers d'identifiants et de mots de passe pour le brute-force SSH}{figure.caption.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Résultats de l'attaque brute-force SSH côté attaquant}}{16}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:brute_ssh_result}{{20}{16}{Résultats de l'attaque brute-force SSH côté attaquant}{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Phase 3 : détection par la chaîne de supervision}{16}{subsection.4.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Logs Suricata de l'attaque brute-force SSH}}{17}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:brute_ssh_logs_1}{{21}{17}{Logs Suricata de l'attaque brute-force SSH}{figure.caption.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Logs système de l'attaque brute-force SSH}}{17}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:brute_ssh_logs_2}{{22}{17}{Logs système de l'attaque brute-force SSH}{figure.caption.26}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Phase 4 : visualisation dans Kibana}{17}{subsection.4.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Visualisation du brute-force SSH dans Kibana}}{18}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:brute_force_ssh_kibana}{{23}{18}{Visualisation du brute-force SSH dans Kibana}{figure.caption.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Synthèse}{18}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Scénario 4 : Usurpation ARP (ARP spoofing)}{18}{section.5}\protected@file@percent }
+\newlabel{sec:Q5}{{5}{18}{Scénario 4 : Usurpation ARP (ARP spoofing)}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Contexte et objectif}{18}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Environnement de test}{18}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Préparation du capteur}{19}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Phase 1 : état initial de la victime}{19}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Phase 2 : lancement de l'usurpation}{19}{subsection.5.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Table ARP saine (\texttt  {0a:00:27:00:00:0b}) et \texttt  {ping} réussi.}}{20}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:arp_before}{{24}{20}{Table ARP saine (\texttt {0a:00:27:00:00:0b}) et \texttt {ping} réussi}{figure.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Script Scapy en cours d'exécution sur le poste attaquant.}}{20}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:arp_script}{{25}{20}{Script Scapy en cours d'exécution sur le poste attaquant}{figure.caption.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Phase 3 : impact sur la victime}{20}{subsection.5.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Table ARP empoisonnée~: \texttt  {192.168.56.1} associé à \texttt  {00:11:22:33:44:55}.}}{21}{figure.caption.30}\protected@file@percent }
+\newlabel{fig:arp_after}{{26}{21}{Table ARP empoisonnée~: \texttt {192.168.56.1} associé à \texttt {00:11:22:33:44:55}}{figure.caption.30}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Phase 4 : détection et analyse}{21}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.1}Volume capturé}{21}{subsubsection.5.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.2}Exemple d'événement falsifié}{21}{subsubsection.5.7.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces Événement \texttt  {event\_type: arp} falsifié dans \texttt  {eve.json}.}}{21}{figure.caption.31}\protected@file@percent }
+\newlabel{fig:arp_eve}{{27}{21}{Événement \texttt {event\_type: arp} falsifié dans \texttt {eve.json}}{figure.caption.31}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.7.3}Anomalie comportementale~: une IP, deux MAC}{22}{subsubsection.5.7.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces Corrélation \texttt  {jq}~: \texttt  {192.168.56.1} revendiquée par deux MAC.}}{22}{figure.caption.32}\protected@file@percent }
+\newlabel{fig:arp_jq}{{28}{22}{Corrélation \texttt {jq}~: \texttt {192.168.56.1} revendiquée par deux MAC}{figure.caption.32}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Visualisation dans Kibana}{22}{subsection.5.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Contre-mesures}{22}{subsection.5.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Synthèse}{22}{subsection.5.10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces Table Kibana~: \texttt  {192.168.56.1} associée à deux adresses MAC.}}{23}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:arp_kibana}{{29}{23}{Table Kibana~: \texttt {192.168.56.1} associée à deux adresses MAC}{figure.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Champs Elasticsearch pour l'analyse ARP dans Kibana.}}{23}{table.caption.34}\protected@file@percent }
+\newlabel{tab:arp_fields}{{3}{23}{Champs Elasticsearch pour l'analyse ARP dans Kibana}{table.caption.34}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Contre-mesures face à l'usurpation ARP.}}{23}{table.caption.35}\protected@file@percent }
+\newlabel{tab:arp_mitigation}{{4}{23}{Contre-mesures face à l'usurpation ARP}{table.caption.35}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Scénario 5 : Déni de service SYN flood}{24}{section.6}\protected@file@percent }
+\newlabel{sec:Q6}{{6}{24}{Scénario 5 : Déni de service SYN flood}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Contexte et objectif}{24}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Environnement de test}{24}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Règle de détection Suricata}{24}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Phase 1 : exécution de l'attaque}{25}{subsection.6.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces Exécution de \texttt  {syn\_flood.py}~: 3\,000 paquets SYN vers la VM.}}{25}{figure.caption.36}\protected@file@percent }
+\newlabel{fig:syn_exec}{{30}{25}{Exécution de \texttt {syn\_flood.py}~: 3\,000 paquets SYN vers la VM}{figure.caption.36}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Phase 2 : détection Suricata}{25}{subsection.6.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {31}{\ignorespaces Alertes «~LOCAL SYN Flood - possible DoS~» (\texttt  {sid:1000002}) dans \texttt  {fast.log}.}}{26}{figure.caption.37}\protected@file@percent }
+\newlabel{fig:syn_fastlog}{{31}{26}{Alertes «~LOCAL SYN Flood - possible DoS~» (\texttt {sid:1000002}) dans \texttt {fast.log}}{figure.caption.37}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Phase 3 : visualisation dans Kibana}{26}{subsection.6.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Champs utiles pour filtrer le SYN flood dans Kibana.}}{26}{table.caption.39}\protected@file@percent }
+\newlabel{tab:syn_fields}{{5}{26}{Champs utiles pour filtrer le SYN flood dans Kibana}{table.caption.39}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {32}{\ignorespaces Kibana~: pic d'alertes \texttt  {rule.id:1000002} correspondant au SYN flood.}}{27}{figure.caption.38}\protected@file@percent }
+\newlabel{fig:syn_kibana}{{32}{27}{Kibana~: pic d'alertes \texttt {rule.id:1000002} correspondant au SYN flood}{figure.caption.38}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Dépannage et leçons apprises}{27}{subsection.6.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.8}Synthèse}{27}{subsection.6.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Scénario 6 : injection SQL (DVWA)}{27}{section.7}\protected@file@percent }
+\newlabel{sec:Q7}{{7}{27}{Scénario 6 : injection SQL (DVWA)}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Contexte et objectif}{27}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Environnement de test}{28}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Phase 1 : déploiement de DVWA}{28}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Phase 2 : règle de détection}{28}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Phase 3 : exploitation}{28}{subsection.7.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.6}Phase 4 : détection et Kibana}{29}{subsection.7.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Champs Kibana pour retrouver l'injection SQL.}}{29}{table.caption.43}\protected@file@percent }
+\newlabel{tab:sqli_fields}{{6}{29}{Champs Kibana pour retrouver l'injection SQL}{table.caption.43}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.7}Synthèse}{29}{subsection.7.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Résultat et Discussion}{29}{section.8}\protected@file@percent }
+\newlabel{sec:Q8}{{8}{29}{Résultat et Discussion}{section.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {33}{\ignorespaces Résultat de l'injection UNION dans DVWA~: comptes et hachés MD5 affichés.}}{30}{figure.caption.40}\protected@file@percent }
+\newlabel{fig:sqli_dvwa}{{33}{30}{Résultat de l'injection UNION dans DVWA~: comptes et hachés MD5 affichés}{figure.caption.40}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {34}{\ignorespaces Règle \texttt  {1000003}, rechargement et alerte dans \texttt  {fast.log}.}}{31}{figure.caption.41}\protected@file@percent }
+\newlabel{fig:sqli_rule}{{34}{31}{Règle \texttt {1000003}, rechargement et alerte dans \texttt {fast.log}}{figure.caption.41}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces Alerte d'injection SQL (\texttt  {rule.id:1000003}) dans Kibana.}}{31}{figure.caption.42}\protected@file@percent }
+\newlabel{fig:sqli_kibana}{{35}{31}{Alerte d'injection SQL (\texttt {rule.id:1000003}) dans Kibana}{figure.caption.42}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Analyse des détections}{32}{subsection.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Limites du projet}{32}{subsection.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{32}{section.9}\protected@file@percent }
+\newlabel{sec:Q9}{{9}{32}{Conclusion}{section.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Améliorations possibles}{33}{subsection.9.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Perspectives}{33}{subsection.9.2}\protected@file@percent }
+\newlabel{fig:use_IA}{{\caption@xref {fig:use_IA}{ on input line 1291}}{33}{Perspectives}{figure.caption.44}{}}
+\gdef \@abspage@last{34}
