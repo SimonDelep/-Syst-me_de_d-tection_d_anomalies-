@@ -1,0 +1,8 @@
+Ce document permet de récupérer l'ensemble des VM qui ont servi pour les différents scénarios d'attaque.
+Elles sont téléchargeables grâce à des liens SwissTransfert valables pendant 30 jours.
+
+VM des scénarios 1 et 2 : https://www.swisstransfer.com/dl/01a12172-f95b-7324-a131-4b1114de35d6
+
+VM du scénario 3 : https://www.swisstransfer.com/dl/01a12177-aa73-7033-826b-6f1a4c9ce6e6
+
+VM des scénarios 4, 5 et 6 : 
