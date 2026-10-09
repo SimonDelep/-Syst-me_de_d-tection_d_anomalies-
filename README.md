@@ -1,4 +1,4 @@
-# Sécurité informatique 8INF857 — Projet pratique 1 (DS-Lab)
+# Sécurité informatique 8INF857 - Projet pratique 1 (DS-Lab)
 
 Réalisé par :
 - DELEPINE Simon
