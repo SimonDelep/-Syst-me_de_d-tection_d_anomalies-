@@ -8,6 +8,8 @@ Réalisé par :
 
 Système de détection d'intrusion basé sur **Suricata** (IDS/IPS), **syslog-ng** et la pile **ELK** (Elasticsearch/Kibana), déployé sur une VM Ubuntu Server.
 
+Rapport complet : Latex_report -> main.pdf.
+
 > **Note importante** : Snort (2 ou 3) n'est plus disponible dans les dépôts d'Ubuntu 26.04 ("resolute"). Le projet utilise donc **Suricata**, le successeur de facto de Snort, activement maintenu, compatible avec le même format de règles (Emerging Threats Open / Snort).
 
 ---
